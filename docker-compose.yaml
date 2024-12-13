@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  product-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/opt/e-commerce
+    ports:
+      - "3000:3000"
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"      
+    volumes:
+      - mongodb-data:/data/db
+volumes:
+  mongodb-data:        
+

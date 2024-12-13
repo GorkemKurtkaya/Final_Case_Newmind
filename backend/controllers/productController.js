@@ -6,6 +6,10 @@ import {
     getAllProductsService
 } from "../services/productService.js";
 
+
+
+
+
 export const createProduct = async (req, res) => {
     try {
         const product = await createProductService(req.user.role, req.body, req.files.imageUri.tempFilePath);

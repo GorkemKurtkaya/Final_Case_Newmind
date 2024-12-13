@@ -10,6 +10,7 @@ import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
 import productRoute from "./routes/productRoute.js";
 import orderRoute from "./routes/orderRoute.js";
+import basketRoute from "./routes/basketRoute.js";
 
 
 // import methodOverride from 'method-override';
@@ -62,6 +63,7 @@ app.use("/auth", authRoute); // /auth/register, /auth/login
 app.use("/users", userRoute);
 app.use("/product", productRoute);
 app.use("/orders", orderRoute);
+app.use("/basket", basketRoute);
 // app.use("/cart", cartRoute);
 
 
@@ -69,5 +71,5 @@ app.use("/orders", orderRoute);
 
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server Çalışıyor http://localhost:${PORT}`);
 });

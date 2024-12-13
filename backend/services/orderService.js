@@ -1,9 +1,16 @@
 import Order from "../models/ordermodel.js";
+import * as kafka from "../utils/kafka.js";
 
 
 const createOrderService = async (orderData) => {
     const newOrder = new Order(orderData);
-    return await newOrder.save();
+    newOrder.save();
+    if (newOrder){
+    kafka.sendMessage("order", `Yeni Sipariş Oluşturuldu: ${newOrder._id}`);
+    return true;
+    }else{
+        return false;
+    }
 };
 
 
