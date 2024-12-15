@@ -6,7 +6,10 @@ import basketController from "../controllers/basketController.js";
 const router = express.Router();
 
 
-router.post('/',basketController.create)
+router.post('/',basketController.addToBasket)
+router.get('/:userId',basketController.getBasket)
+router.delete('/:userId',basketController.delete)
+
 
 
 export default router;

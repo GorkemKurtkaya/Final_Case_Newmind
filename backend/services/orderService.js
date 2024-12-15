@@ -1,14 +1,43 @@
 import Order from "../models/ordermodel.js";
 import * as kafka from "../utils/kafka.js";
+import Product from "../models/productmodel.js";
 
 
 const createOrderService = async (orderData) => {
+    const { products } = orderData;
+
+    let totalAmount = 0;
+
+    for (const item of products) {
+        const product = await Product.findById(item.productId);
+
+        if (!product) {
+            throw new Error(`Ürün bulunamadı: ${item.productId}`);
+        }
+
+        if (product.stock < item.quantity) {
+            throw new Error(`Üründe yeterli stok yok: ${product.name}`);
+        }
+
+        totalAmount += product.price * item.quantity;
+    }
+
+    // Stokları Güncelleme Kısmı burası
+    for (const item of products) {
+        await Product.findByIdAndUpdate(item.productId, {
+            $inc: { stock: -item.quantity },
+        });
+    }
+
+    orderData.amount = totalAmount;
+
     const newOrder = new Order(orderData);
-    newOrder.save();
-    if (newOrder){
-    kafka.sendMessage("order", `Yeni Sipariş Oluşturuldu: ${newOrder._id}`);
-    return true;
-    }else{
+    await newOrder.save();
+
+    if (newOrder) {
+        kafka.sendMessage("order", `Yeni Sipariş Oluşturuldu: ${newOrder._id}`);
+        return true;
+    } else {
         return false;
     }
 };

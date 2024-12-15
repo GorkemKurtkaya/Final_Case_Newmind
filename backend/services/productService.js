@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
-import fs from "fs";
+
 import Product from "../models/productmodel.js";
 
 export const createProductService = async (userRole, productData, imageFilePath) => {
@@ -12,7 +12,7 @@ export const createProductService = async (userRole, productData, imageFilePath)
         folder: "Newmind_Products",
     });
 
-    if (!productData.title || !productData.desc || !productData.category || !productData.price || !imageFilePath) {
+    if (!productData.title || !productData.desc || !productData.category || !productData.price || !imageFilePath || !productData.stock) {
         throw new Error("All fields are required");
     }
 
@@ -20,11 +20,11 @@ export const createProductService = async (userRole, productData, imageFilePath)
         title: productData.title,
         desc: productData.desc,
         category: productData.category,
+        stock: productData.stock,
         price: productData.price,
         imageUri: result.secure_url
     });
 
-    fs.unlinkSync(imageFilePath);
     
     return product;
     
@@ -40,6 +40,10 @@ export const updateProductService = async (userRole, productId, productData) => 
         { $set: productData },
         { new: true }
     );
+
+    if (!updatedProduct) {
+        throw new Error("Product not found or invalid ID");
+    }
 
     return updatedProduct;
 };

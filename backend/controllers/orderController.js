@@ -11,8 +11,7 @@ import{
 
 
 const createOrder = async (req, res) => {
-
-    if (req.user.role !== "user") {
+    if (req.user.role !== "user" && req.user.role !== "admin") {
         return res.status(403).json({ message: "Yetkisiz Kullanıcı / Lütfen Giriş Yapınız!" });
     }
     if (!req.body.products || req.body.products.length === 0) {
@@ -21,12 +20,13 @@ const createOrder = async (req, res) => {
     if (!req.body.address) {
         return res.status(400).json({ message: "Adres bilgileri eksik" });
     }
+
     try {
         const savedOrder = await createOrderService(req.body);
-        res.status(200).json(savedOrder);
+        res.status(200).json({ message: "Sipariş başarıyla oluşturuldu!" });
         console.log("Sipariş Oluşturuldu");
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        res.status(400).json({ message: err.message });
     }
 };
 

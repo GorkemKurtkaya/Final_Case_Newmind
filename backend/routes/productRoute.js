@@ -1,6 +1,6 @@
 import express from 'express';
 import * as productController from '../controllers/productController.js';
-import * as authMiddleWare from '../middlewares/authMiddleWare.js';
+import * as authMiddleWare from '../middlewares/authmiddleware.js';
 
 const router = express.Router();
 

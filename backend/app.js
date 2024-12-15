@@ -11,6 +11,8 @@ import authRoute from "./routes/authRoute.js";
 import productRoute from "./routes/productRoute.js";
 import orderRoute from "./routes/orderRoute.js";
 import basketRoute from "./routes/basketRoute.js";
+import * as redis from "./utils/redis.js";
+
 
 
 // import methodOverride from 'method-override';
@@ -26,6 +28,9 @@ cloudinary.config({
 
 //db connection
 conn();
+
+//redis bağlantısı
+redis.redisCon();
 
 
 
@@ -46,14 +51,6 @@ app.use(cookieParser());
 app.use(fileUpload({ useTempFiles: true }));
 // app.use(methodOverride('_method', {
 //     methods: ['POST', 'GET']
-// }));
-
-// Session middleware'i kur
-// app.use(session({
-//   secret: process.env.ADMIN_PASSWORD,
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { secure: false } 
 // }));
 
 
