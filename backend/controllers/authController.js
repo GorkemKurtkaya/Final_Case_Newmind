@@ -20,10 +20,16 @@ const loginUser = async (req, res) => {
         const { email, password } = req.body;
         const { user, token } = await loginUserService(email, password);
 
+
         res.cookie("jwt", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            maxAge: 24 * 60 * 60 * 1000
+            maxAge: 24 * 60 * 60 * 1000, 
+            sameSite: 'Lax'
+        });
+
+        res.cookie("user", user._id.toString(), {
+            maxAge: 24 * 60 * 60 * 1000, 
+            sameSite: 'Lax'
         });
 
         res.status(200).json({
@@ -40,16 +46,21 @@ const loginUser = async (req, res) => {
 };
 
 
+
 const getLogout = (req, res) => {
-    // JWT çerezini temizle
     res.cookie("jwt", "", {
-        maxAge: 0, // Çerezi hemen sil
-        httpOnly: true, // Çerezi yalnızca HTTP istekleri üzerinden erişilebilir kılar
-        path: '/', // Çerezin geçerli olduğu yol
-        sameSite: 'Lax' // Güvenlik için, cross-site isteklerde kullanılabilir
+        maxAge: 0, 
+        httpOnly: true, 
+        path: '/', 
+        sameSite: 'Lax' 
     });
 
-    // Başarılı yanıt gönder
+    res.cookie("user", "", {
+        maxAge: 0,
+        path: '/',
+        sameSite: 'Lax'
+    });
+
     res.status(200).json({
         succeeded: true,
         message: "Logged out successfully"

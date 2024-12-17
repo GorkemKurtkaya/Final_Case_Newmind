@@ -10,9 +10,9 @@ app.use(express.urlencoded({ extended: true }));
 
 const kafka = new Kafka({
   clientId: 'my-kafka-producer2',
-  brokers: ['kafka:9092']
+  // brokers: ['kafka:9092']
   //  // LOCALDE ÇALIŞTIRMAK İÇİN AŞAĞIDAKİ KODU KULLANINIZ
-  //  brokers: ['localhost:9092']
+   brokers: ['localhost:9092']
   
 })
 
@@ -22,6 +22,7 @@ const run = async () => {
   // Consuming
   await consumer.connect()
   await consumer.subscribe({ topic: 'order', fromBeginning: true })
+  
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {

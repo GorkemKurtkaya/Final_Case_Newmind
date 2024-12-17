@@ -1,6 +1,6 @@
 import {
     changePasswordService,
-    changeNameService,
+    changeNameandMailService,
     getUserByIdService,
     getUserStatsService
 } from "../services/userService.js";
@@ -25,9 +25,9 @@ const changePassword = async (req, res) => {
     }
 };
 
-const changeName = async (req, res) => {
+const changeNameandMail = async (req, res) => {
     try {
-        const message = await changeNameService(res.locals.user._id, req.body.name);
+        const message = await changeNameandMailService(res.locals.user._id, req.body.name , req.body.email);
 
         res.status(200).json({
             succeeded: true,
@@ -46,7 +46,7 @@ const getAUser = async (req, res) => {
         const user = await getUserByIdService(req.params.id);
 
         res.status(200).json({
-            name: user.username,
+            name: user.name,
             email: user.email,
             id: user._id,
         });
@@ -80,4 +80,4 @@ const getUserStats = async (req, res) => {
     }
 };
 
-export { changePassword, changeName, getAUser, getUserStats };
+export { changePassword, changeNameandMail, getAUser, getUserStats };

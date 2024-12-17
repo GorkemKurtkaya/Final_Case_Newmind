@@ -13,9 +13,9 @@ import fs from "fs";
 
 export const createProduct = async (req, res) => {
     try {
-        const product = await createProductService(req.user.role, req.body, req.files.imageUri.tempFilePath);
+        const product = await createProductService(req.user.role, req.body, req.files.image.tempFilePath);
 
-        fs.unlink(req.files.imageUri.tempFilePath, (err) => {
+        fs.unlink(req.files.image.tempFilePath, (err) => {
             if (err) {
                 console.error("Temp file silinemedi:", err);
             } else {
@@ -29,8 +29,8 @@ export const createProduct = async (req, res) => {
         });
         console.log("Ürün oluşturuldu");
     } catch (error) {
-        if (req.files?.imageUri?.tempFilePath) {
-            fs.unlink(req.files.imageUri.tempFilePath, (err) => {
+        if (req.files?.image?.tempFilePath) {
+            fs.unlink(req.files.image.tempFilePath, (err) => {
                 if (err) console.error("Hata temp file silinemedi:", err);
             });
         }

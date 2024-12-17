@@ -12,17 +12,17 @@ export const createProductService = async (userRole, productData, imageFilePath)
         folder: "Newmind_Products",
     });
 
-    if (!productData.title || !productData.desc || !productData.category || !productData.price || !imageFilePath || !productData.stock) {
+    if (!productData.title || !productData.description || !productData.category || !productData.price || !imageFilePath || !productData.stock) {
         throw new Error("All fields are required");
     }
 
     const product = await Product.create({
         title: productData.title,
-        desc: productData.desc,
+        description: productData.description,
         category: productData.category,
         stock: productData.stock,
         price: productData.price,
-        imageUri: result.secure_url
+        image: result.secure_url
     });
 
     

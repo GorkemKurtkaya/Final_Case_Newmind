@@ -28,7 +28,7 @@ const changePasswordService = async (userId, oldPassword, newPassword) => {
     return "Password changed successfully";
 };
 
-const changeNameService = async (userId, newName) => {
+const changeNameandMailService = async (userId, newName,newMail) => {
     const user = await User.findById(userId);
 
     if (!user) {
@@ -36,6 +36,7 @@ const changeNameService = async (userId, newName) => {
     }
 
     user.name = newName;
+    user.email = newMail;
     await user.save();
 
     return "Name changed successfully";
@@ -71,4 +72,4 @@ const getUserStatsService = async (lastYear) => {
 };
 
 
-export { changePasswordService, changeNameService, getUserByIdService, getUserStatsService };
+export { changePasswordService, changeNameandMailService, getUserByIdService, getUserStatsService };
