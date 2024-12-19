@@ -6,8 +6,6 @@ import { createClient } from 'redis';
 
 
 
-
-
 async function addToCart(params) {
     const { userId, product } = params;
     const cartKey = userId;
@@ -16,14 +14,37 @@ async function addToCart(params) {
             .on('error', err => console.log('Redis Client Error', err))
             .connect();
 
-        // Redis'in bağlantısını doğrula
         const isConnected = client.isOpen;
         if (!isConnected) {
             throw new Error("Redis connection failed");
         }
 
-        // Veriyi Redis'e kaydet
-        await client.set(cartKey, JSON.stringify(product));
+        const existingCartString = await client.get(cartKey);
+        let existingCart = [];
+
+        if (existingCartString) {
+            try {
+                existingCart = JSON.parse(existingCartString);
+                if (!Array.isArray(existingCart)) {
+                    existingCart = [];
+                }
+            } catch (parseError) {
+                existingCart = [];
+            }
+        }
+
+        const existingProductIndex = existingCart.findIndex(
+            item => item.productId === product.productId
+        );
+
+        if (existingProductIndex > -1) {
+            existingCart[existingProductIndex].quantity += product.quantity;
+        } else {
+
+            existingCart.push(product);
+        }
+
+        await client.set(cartKey, JSON.stringify(existingCart));
 
         return true;
     } catch (e) {
@@ -31,6 +52,8 @@ async function addToCart(params) {
         return false;
     }
 }
+
+
 async function getBasket(params){
     const client = await createClient()
         .on('error', err => console.log('Redis Client Error', err))
@@ -47,11 +70,9 @@ async function getBasket(params){
     }
 }
 
-async function removeFromCart(params, res){
-    const { userId } = params;
-    
-    // Ensure userId is a string
-    const cartKey = String(userId);  // Ensure the key is a string
+async function removeCart(params, res){
+    const { userId } = params; 
+    const cartKey = String(userId);  
     
     try {
         const client = await createClient()
@@ -69,51 +90,68 @@ async function removeFromCart(params, res){
     }
 }
 
+const updateCartItem = async (params,res) => {
+    const { userId, productId, action } = params;
+
+    const cartKey = String(userId);
+
+    try {
+        const client = await createClient()
+            .on('error', (err) => console.log('Redis Client Error', err))
+            .connect();
+
+        let cart = await client.get(cartKey);
+
+        if (!cart) {
+            return { status: 404, message: "Sepet bulunamadı" };
+        }
+
+        cart = JSON.parse(cart);
+
+        console.log("Sepet içeriği:", cart);
+
+        const productIndex = cart.findIndex(item => item.productId === productId);
+
+        if (productIndex === -1) {
+            return { status: 404, message: "Ürün bulunamadı" };
+        }
+
+        let productQuantity = cart[productIndex].quantity;
+
+        if (action === "increment") {
+            productQuantity += 1;
+            cart[productIndex].quantity = productQuantity;
+        } else if (action === "decrement") {
+            if (productQuantity > 1) {
+                productQuantity -= 1;
+                cart[productIndex].quantity = productQuantity;
+            } else {
+                cart.splice(productIndex, 1);
+                if (cart.length === 0) {
+                    await client.del(cartKey);
+                    return { status: 200, message: "Sepet başarıyla boşaltıldı" };
+                }
+            }
+        } else if (action === "remove") {
+            cart.splice(productIndex, 1);
+            if (cart.length === 0) {
+                await client.del(cartKey);
+                return { status: 200, message: "Sepet başarıyla boşaltıldı" };
+            }
+        } else {
+            return { status: 400, message: "Geçersiz işlem türü" };
+        }
+        await client.set(cartKey, JSON.stringify(cart));
+
+        return { status: 200, message: `Ürün başarıyla güncellendi: ${action}` };
+    } catch (e) {
+        console.log(e);
+        return { status: 500, message: "Internal Server Error" };
+    }
+};
 
 
-// async function removeFromCart(params){
-//     const {userId,productId} = params
-//     const cartKey = getCartKey(userId)
-//     try{
-//         const result = await client.hdel(cartKey,productId)
-
-//         if(result === 0){
-//             return res.status(404).send({message:"Ürün bulunamadı"})
-//         }
-//         res.status(200).send({message:'Ürün sepetten silindi.'})
-
-//     }catch(e){
-//         console.log(e);
-//         return false;
-//     }
-// }
-
-// async function update(params){
-//     const {id,name,price,color,stock} = params;
-//     try{
-//         const product = await mongooseBasket.findById(id);
-//         product.name = name;
-//         product.price = price;
-//         product.color = color;
-//         product.stock = stock;
-//         const productSave = await product.save();
-//         console.log(productSave);
-//         return productSave;
-//     }catch(e){
-//         console.log(e);
-//         return false;
-//     }
-// }
-// async function deleleteF(params){
-//     const id = params;
-//     try{
-//         const productDelete = await mongooseBasket.findByIdAndDelete(id);
-//         return productDelete;
-//     }catch(e){
-//         console.log(e);
-//         return false;
-//     }
-// }
 
 
-export {addToCart,getBasket,removeFromCart}
+
+export {addToCart,getBasket,removeCart,updateCartItem}

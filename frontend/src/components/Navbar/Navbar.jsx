@@ -1,42 +1,73 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useRef, useState,useEffect } from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
-// import logo from '../Assets/logo.png'
-// import cart_icon from '../Assets/cart_icon.png'
 import { ShopContext } from '../../Context/ShopContext'
-// import nav_dropdown from '../Assets/nav_dropdown.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping,faUser,faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import logo from '../../assets/logo.png'
 
 const Navbar = () => {
-
-  let [menu,setMenu] = useState("shop");
+  let [menu, setMenu] = useState("shop");
   const {getTotalCartItems} = useContext(ShopContext);
 
-  const menuRef = useRef();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-//   const dropdown_toggle = (e) => {
-//     menuRef.current.classList.toggle('nav-menu-visible');
-//     e.target.classList.toggle('open');
-//   }
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/auth/checkUser", {
+          method: "GET",
+          credentials: "include", // Cookie'yi göndermek için gerekli
+        });
+        if (response.ok) {
+          setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
+        }
+      } catch (error) {
+        console.error("Auth check failed:", error);
+        setIsAuthenticated(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+  const logout = async () => {
+    try {
+      await fetch("http://localhost:3000/auth/logout", {
+        method: "GET",
+        credentials: "include", // Cookie'yi göndermek için gerekli
+      });
+      setIsAuthenticated(false);
+      window.location.replace("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
+  const menuRef = useRef();
 
   return (
     <div className='nav'>
       <Link to='/' style={{ textDecoration: 'none' }} className="nav-logo">
         <img src={logo} alt="logo" />
-        <p>Görkem Market</p>
       </Link>
-      {/* <img onClick={dropdown_toggle} className='nav-dropdown' src={nav_dropdown} alt="" /> */}
       <ul ref={menuRef} className="nav-menu">
-        <li onClick={()=>{setMenu("shop")}}><Link to='/' style={{ textDecoration: 'none' }}>Notebook</Link>{menu==="shop"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("mens")}}><Link to='/mens' style={{ textDecoration: 'none' }}>Cep Telefonu</Link>{menu==="mens"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("womens")}}><Link to='/womens' style={{ textDecoration: 'none' }}>Tablet</Link>{menu==="womens"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("kids")}}><Link to='/kids' style={{ textDecoration: 'none' }}>Kids</Link>{menu==="kids"?<hr/>:<></>}</li>
+        <li onClick={() => { setMenu("shop") }}><Link to='/' style={{ textDecoration: 'none' }}>Ana Sayfa</Link>{menu === "shop" ? <hr /> : <></>}</li>
+        <li onClick={() => { setMenu("notebook") }}><Link to='/notebook' style={{ textDecoration: 'none' }}>Notebook</Link>{menu === "notebook" ? <hr /> : <></>}</li>
+        <li onClick={() => { setMenu("phone") }}><Link to='/phone' style={{ textDecoration: 'none' }}>Cep Telefonu</Link>{menu === "phone" ? <hr /> : <></>}</li>
+        <li onClick={() => { setMenu("tablet") }}><Link to='/tablet' style={{ textDecoration: 'none' }}>Tablet</Link>{menu === "tablet" ? <hr /> : <></>}</li>
+        
       </ul>
       <div className="nav-login-cart">
-        {localStorage.getItem('auth-token')
-        ?<button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace("/");}}>Logout</button>
-        :<Link to='/login' style={{ textDecoration: 'none' }}><button>Login</button></Link>}
-        <Link to="/cart"><img src={cart_icon} alt="cart"/></Link>
-        <div className="nav-cart-count">{getTotalCartItems()}</div>
+      {isAuthenticated
+        ? <>
+            <a onClick={logout} style={{cursor:'pointer', color:"#551A8B"}}><FontAwesomeIcon icon={faRightFromBracket} /></a>
+            <Link to="/profile"><FontAwesomeIcon icon={faUser} /></Link>
+          </>
+        : <Link to='/login' style={{ textDecoration: 'none' }}><button>Login</button></Link>}
+      <Link to="/cart">{getTotalCartItems()}<FontAwesomeIcon icon={faCartShopping} /></Link>
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "frontendnew",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,22 +8,19 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start":"npm run dev"
+    "start": "npm run dev"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@fortawesome/fontawesome-svg-core": "^6.6.0",
-    "@fortawesome/free-brands-svg-icons": "^6.6.0",
-    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/free-brands-svg-icons": "^6.7.1",
+    "@fortawesome/free-solid-svg-icons": "^6.7.1",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@mui/material": "^6.1.7",
-    "axios": "^1.7.7",
-    "bootstrap": "^5.3.3",
+    "antd": "^5.22.5",
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "js-cookie": "^3.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0",
-    "reactstrap": "^9.2.3"
+    "react-router-dom": "^7.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

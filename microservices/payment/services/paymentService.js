@@ -33,8 +33,8 @@ export const processCreditCard = async ({ cardName, cardNumber, expiryDate, cvv 
 /**
  * Kafka'ya Ödeme Bilgisi Gönderme
  */
-export const sendPaymentSuccessMessage = async ({ orderId, amount, cardNumber }) => {
-  const paymentInfo = { orderId, amount, cardNumber: cardNumber.slice(-4) }; // Sadece son 4 hane
+export const sendPaymentSuccessMessage = async ({ orderId, cardName, amount, cardNumber }) => {
+  const paymentInfo = { orderId, cardName, amount, cardNumber: cardNumber.slice(-4) }; 
 
   await producer.connect();
   await producer.send({

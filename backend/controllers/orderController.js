@@ -23,8 +23,11 @@ const createOrder = async (req, res) => {
 
     try {
         const savedOrder = await createOrderService(req.body);
-        res.status(200).json({ message: "Sipariş başarıyla oluşturuldu!" });
-        console.log("Sipariş Oluşturuldu");
+        res.status(200).json({ 
+            message: "Sipariş başarıyla oluşturuldu!",
+            order: savedOrder // Order objesini response'a ekledik
+        });
+        console.log("Sipariş Oluşturuldu:", savedOrder._id);
     } catch (err) {
         res.status(400).json({ message: err.message });
     }

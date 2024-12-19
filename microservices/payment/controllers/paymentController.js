@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
     const card = await processCreditCard({ cardName, cardNumber, expiryDate, cvv });
 
     // Kafka'ya ödeme başarı mesajı gönder
-    await sendPaymentSuccessMessage({ orderId, amount, cardNumber: card.cardNumber });
+    await sendPaymentSuccessMessage({ orderId,cardName, amount, cardNumber: card.cardNumber });
 
     res.json({ message: 'Ödeme Başarılı', paymentInfo: { orderId, amount,cardName, cardNumber: card.cardNumber.slice(-4) } });
   } catch (error) {

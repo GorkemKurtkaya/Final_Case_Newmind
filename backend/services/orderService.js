@@ -22,7 +22,7 @@ const createOrderService = async (orderData) => {
         totalAmount += product.price * item.quantity;
     }
 
-    // Stokları Güncelleme Kısmı burası
+    // Stokları Güncelleme
     for (const item of products) {
         await Product.findByIdAndUpdate(item.productId, {
             $inc: { stock: -item.quantity },
@@ -36,12 +36,11 @@ const createOrderService = async (orderData) => {
 
     if (newOrder) {
         kafka.sendMessage("order", `Yeni Sipariş Oluşturuldu: ${newOrder._id}`);
-        return true;
+        return newOrder; // Artık tüm order objesini dönüyoruz
     } else {
         return false;
     }
 };
-
 
 const updateOrderService = async (orderId, orderData) => {
     return await Order.findByIdAndUpdate(

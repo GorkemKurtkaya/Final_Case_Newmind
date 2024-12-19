@@ -1,7 +1,6 @@
 import express from 'express';
 import { Kafka } from 'kafkajs';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
 import Invoice from './models/Invoice.js';  
 import conn from './db.js';
 
