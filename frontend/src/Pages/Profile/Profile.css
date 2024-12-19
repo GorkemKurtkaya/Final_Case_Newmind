@@ -82,3 +82,59 @@
 .save-button:hover {
   background-color: #0056b3;
 }
+
+.orderitems {
+  margin: 100px 170px;
+}
+.orderitems hr {
+  height: 3px;
+  background: #e2e2e2;
+  border: 0;
+}
+.orderitems-format-main {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 75px;
+  padding: 20px 0px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
+}
+.orderitems-format {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 75px;
+  padding: 20px 0px;
+  color: #454545;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.orderitems-product-icon {
+  height: 62px;
+}
+
+
+.order-container {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
+
+.order-container h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.order-container p {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.orderitems h2 {
+  margin: 30px 0px;
+}
