@@ -3,6 +3,7 @@ import * as kafka from "../utils/kafka.js";
 import Product from "../models/productmodel.js";
 
 
+// Sipariş oluşturma
 const createOrderService = async (orderData) => {
     const { products } = orderData;
 
@@ -36,12 +37,13 @@ const createOrderService = async (orderData) => {
 
     if (newOrder) {
         kafka.sendMessage("order", `Yeni Sipariş Oluşturuldu: ${newOrder._id}`);
-        return newOrder; // Artık tüm order objesini dönüyoruz
+        return newOrder; 
     } else {
         return false;
     }
 };
 
+// Sipariş güncelleme
 const updateOrderService = async (orderId, orderData) => {
     return await Order.findByIdAndUpdate(
         orderId,
@@ -50,25 +52,30 @@ const updateOrderService = async (orderId, orderData) => {
     );
 };
 
+// Sipariş silme
 const deleteOrderService = async (orderId) => {
     await Order.findByIdAndDelete(orderId);
     return "Sipariş silindi";
 };
 
+// Sipariş getirme
 const getOrderService = async (orderId) => {
     const order = await Order.findById(orderId);
     if (!order) throw new Error("Silinmiş veya hatalı sipariş id'si");
     return order;
 };
 
+// Kullanıcıya ait siparişleri getirme
 const getUserOrdersService = async (userId) => {
     return await Order.find({ userId });
 };
 
+// Tüm siparişleri getirme
 const getAllOrdersService = async () => {
     return await Order.find();
 };
 
+// Sipariş gelirlerini getirme
 const getOrderIncomeService = async () => {
     const date = new Date();
     const lastMonth = new Date(date.setMonth(date.getMonth() - 1));

@@ -2,28 +2,9 @@ import {
     changePasswordService,
     changeNameandMailService,
     getUserByIdService,
-    getUserStatsService
 } from "../services/userService.js";
 
-const changePassword = async (req, res) => {
-    try {
-        const message = await changePasswordService(
-            res.locals.user._id,
-            req.body.oldPassword,
-            req.body.newPassword
-        );
 
-        res.status(200).json({
-            succeeded: true,
-            message,
-        });
-    } catch (error) {
-        res.status(500).json({
-            succeeded: false,
-            message: error.message,
-        });
-    }
-};
 
 const changeNameandMail = async (req, res) => {
     try {
@@ -58,26 +39,27 @@ const getAUser = async (req, res) => {
     }
 };
 
-const getUserStats = async (req, res) => {
+
+const changePassword = async (req, res) => {
     try {
-        if (req.user.role !== "admin") {
-            return res.status(403).json({
-                succeeded: false,
-                message: "Access denied",
-            });
-        }
+        const message = await changePasswordService(
+            res.locals.user._id,
+            req.body.oldPassword,
+            req.body.newPassword
+        );
 
-        const date = new Date();
-        const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-
-        const data = await getUserStatsService(lastYear);
-        res.status(200).json(data);
+        res.status(200).json({
+            succeeded: true,
+            message,
+        });
     } catch (error) {
         res.status(500).json({
             succeeded: false,
-            error: error.message,
+            message: error.message,
         });
     }
 };
 
-export { changePassword, changeNameandMail, getAUser, getUserStats };
+
+
+export { changePassword, changeNameandMail, getAUser };

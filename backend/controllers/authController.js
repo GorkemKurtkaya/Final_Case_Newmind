@@ -1,13 +1,16 @@
 import { registerUserService, loginUserService } from "../services/authService.js";
+import logger from "../utils/logger.js";
 
 const registerUser = async (req, res) => {
     try {
+        logger.info("Registering user");
         const user = await registerUserService(req.body);
         res.status(201).json({
             succeeded: true,
             user: user._id
         });
     } catch (error) {
+        logger.error(`Error: ${error.message}`);
         res.status(400).json({
             succeeded: false,
             error: error.message
@@ -37,11 +40,13 @@ const loginUser = async (req, res) => {
             user: user._id,
             message: "Login successful"
         });
+        logger.info("Login successful");
     } catch (error) {
         res.status(500).json({
             succeeded: false,
             message: error.message
         });
+        logger.error(`Error: ${error.message}`);
     }
 };
 
@@ -65,6 +70,7 @@ const getLogout = (req, res) => {
         succeeded: true,
         message: "Logged out successfully"
     });
+    logger.info("Logged out successfully");
 };
 
 export { registerUser, loginUser, getLogout };

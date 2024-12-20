@@ -10,6 +10,8 @@ router.delete('/:id',authMiddleWare.authenticateToken, productController.deleteP
 router.get('/find/:id', productController.getAProduct);
 router.get('/', productController.getAllProduct);
 
+router.get('/search/:text', productController.searchProduct);
+
 
 
 export default router;

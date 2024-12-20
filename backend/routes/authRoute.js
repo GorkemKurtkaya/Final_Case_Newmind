@@ -8,6 +8,7 @@ const router = express.Router();
 router.post("/register", authController.registerUser);
 router.post('/login', authController.loginUser);
 
+// Kullanıcıyı kontrol et
 router.get("/checkUser", checkUser, (req, res) => {
   if (res.locals.user) {
     res.status(200).json({ user: res.locals.user });
@@ -16,6 +17,7 @@ router.get("/checkUser", checkUser, (req, res) => {
   }
 });
 
+// Kullanıcıyı kontrol et
 router.get("/auth", authMiddleWare.authenticateToken, (req, res) => {
   if(res.locals.user){
     res.status(200).send("Authenticated");
@@ -25,6 +27,7 @@ router.get("/auth", authMiddleWare.authenticateToken, (req, res) => {
 
 });
 
+// Çerez oluştur
 router.get("/cook", (req, res) => {
   // Çerezi al
   const cookie = req.cookies["jwt"];

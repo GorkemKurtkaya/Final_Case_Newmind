@@ -12,13 +12,15 @@ import productRoute from "./routes/productRoute.js";
 import orderRoute from "./routes/orderRoute.js";
 import basketRoute from "./routes/basketRoute.js";
 import * as redis from "./utils/redis.js";
+import logger from "./utils/logger.js";
 
 
 
-// import methodOverride from 'method-override';
 
+// .env dosyasını okuma
 dotenv.config();
 
+// cloudinary config
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API_KEY,
@@ -33,12 +35,16 @@ conn();
 redis.redisCon();
 
 
-
+//express
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 
-
+// log işlemleri
+app.use((req, res, next) => {
+  logger.info(`${req.method} - ${req.url} - ${req.ip}`);
+  next();
+});
 
 //static dosyası
 app.use(cors({
@@ -54,13 +60,11 @@ app.use(fileUpload({ useTempFiles: true }));
 
 //routes
 app.use('*', checkUser);
-app.use("/auth", authRoute); // /auth/register, /auth/login
+app.use("/auth", authRoute);
 app.use("/users", userRoute);
 app.use("/product", productRoute);
 app.use("/orders", orderRoute);
 app.use("/basket", basketRoute);
-// app.use("/cart", cartRoute);
-
 
 
 

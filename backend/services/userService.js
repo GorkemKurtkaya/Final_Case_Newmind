@@ -52,24 +52,7 @@ const getUserByIdService = async (userId) => {
     return user;
 };
 
-const getUserStatsService = async (lastYear) => {
-    const data = await User.aggregate([
-        { $match: { createdAt: { $gte: lastYear } } },
-        {
-            $project: {
-                month: { $month: "$createdAt" },
-            },
-        },
-        {
-            $group: {
-                _id: "$month",
-                total: { $sum: 1 },
-            },
-        },
-    ]);
-
-    return data;
-};
 
 
-export { changePasswordService, changeNameandMailService, getUserByIdService, getUserStatsService };
+
+export { changePasswordService, changeNameandMailService, getUserByIdService};

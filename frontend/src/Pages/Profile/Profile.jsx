@@ -16,6 +16,7 @@ const Profile = () => {
   const [ordersLoading, setOrdersLoading] = useState(true);
   const [ordersError, setOrdersError] = useState(null);
 
+  // Kullanıcı bilgilerini getir
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -33,6 +34,7 @@ const Profile = () => {
     fetchUser();
   }, []);
 
+  // Kullanıcının siparişlerini getir
   useEffect(() => {
     const fetchUserOrders = async () => {
       try {
@@ -75,6 +77,8 @@ const Profile = () => {
         handleSaveChanges={handleSaveChanges}
       />
       <Orders orders={orders} ordersLoading={ordersLoading} ordersError={ordersError} />
+
+
     </div>
   );
 };

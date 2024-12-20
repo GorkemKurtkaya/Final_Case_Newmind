@@ -9,7 +9,6 @@ const router = express.Router();
 router.route('/:id').get(userController.getAUser);
 router.post("/changePassword", authMiddleWare.authenticateToken, userController.changePassword);
 router.put("/changeNameandMail",authMiddleWare.authenticateToken,userController.changeNameandMail);
-// router.get("/stats",authMiddleWare.authenticateToken,userController.getUserStats);
 
 
 

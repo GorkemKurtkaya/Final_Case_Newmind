@@ -2,6 +2,8 @@ import User from "../models/usermodel.js";
 import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
 
+
+// Kullanıcı kayıt işlemi
 const registerUserService = async (userData) => {
     const existingUser = await User.findOne({ name: userData.name });
     if (existingUser) {
@@ -11,6 +13,7 @@ const registerUserService = async (userData) => {
     return user;
 };
 
+// Kullanıcı giriş işlemi
 const loginUserService = async (email, password) => {
     const user = await User.findOne({ email });
     if (!user) {

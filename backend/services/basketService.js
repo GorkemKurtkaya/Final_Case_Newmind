@@ -5,7 +5,7 @@ import { createClient } from 'redis';
 
 
 
-
+// Sepete ürün ekleme
 async function addToCart(params) {
     const { userId, product } = params;
     const cartKey = userId;
@@ -53,7 +53,7 @@ async function addToCart(params) {
     }
 }
 
-
+// Sepeti getirme
 async function getBasket(params){
     const client = await createClient()
         .on('error', err => console.log('Redis Client Error', err))
@@ -70,6 +70,7 @@ async function getBasket(params){
     }
 }
 
+// Sepeti silme
 async function removeCart(params, res){
     const { userId } = params; 
     const cartKey = String(userId);  
@@ -90,6 +91,7 @@ async function removeCart(params, res){
     }
 }
 
+// Sepetteki ürünü güncelleme
 const updateCartItem = async (params,res) => {
     const { userId, productId, action } = params;
 

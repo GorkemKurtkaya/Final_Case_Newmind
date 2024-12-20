@@ -2,6 +2,7 @@ import { v2 as cloudinary } from 'cloudinary';
 
 import Product from "../models/productmodel.js";
 
+// Ürün oluşturma
 export const createProductService = async (userRole, productData, imageFilePath) => {
     if (userRole !== "admin") {
         throw new Error("Access denied");
