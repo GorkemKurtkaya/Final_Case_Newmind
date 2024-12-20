@@ -63,9 +63,6 @@ benim-projem'i npm kullanarak yükleyin
 
 
 
-  
-## Optimizasyon
 
-Kodunuzda hangi optimizasyonları yaptınız? Örneğin. yeniden düzenleyiciler, performans iyileştirmeleri, erişilebilirlik
 
   
