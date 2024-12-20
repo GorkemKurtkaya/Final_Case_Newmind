@@ -39,7 +39,7 @@ const ShopCategory = (props) => {
             {
               return (
                
-                  <Item id={item._id} name={item.title} image={item.image} price={item.price} />
+                  <Item id={item._id} name={item.title} image={item.image} price={item.price} category={item.category} />
                 
               );
             }

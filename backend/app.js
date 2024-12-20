@@ -13,6 +13,8 @@ import orderRoute from "./routes/orderRoute.js";
 import basketRoute from "./routes/basketRoute.js";
 import * as redis from "./utils/redis.js";
 import logger from "./utils/logger.js";
+import { Server } from 'socket.io';
+import { createServer } from "http";
 
 
 
@@ -39,6 +41,8 @@ redis.redisCon();
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+const SOCKET_PORT = 9000; 
+
 
 // log işlemleri
 app.use((req, res, next) => {
@@ -48,8 +52,8 @@ app.use((req, res, next) => {
 
 //static dosyası
 app.use(cors({
-  origin: "http://localhost:5173", // frontend URL'ini buraya koy
-  credentials: true, // cookie'lerin frontend ile paylaşılmasına izin ver
+  origin: "http://localhost:5173", // frontend URL
+  credentials: true, 
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -69,6 +73,41 @@ app.use("/basket", basketRoute);
 
 
 
-app.listen(PORT, () => {
-  console.log(`Server Çalışıyor http://localhost:${PORT}`);
+
+
+app.post("/sendMessage", (req, res) => {
+  const { message } = req.body;
+  if (!message) {
+    return res.status(400).send("Mesaj eksik!");
+  }
+  io.emit("message", message);
+  res.status(200).send("Mesaj gönderildi!");
 });
+
+
+// Socket.IO sunucusu
+const ioServer = createServer();
+const io = new Server(ioServer, {
+  cors: { origin: '*', methods: ['GET', 'POST'] },
+});
+
+io.on("connection", (socket) => {
+  console.log(`Yeni bir kullanıcı bağlandı: ${socket.id}`);
+
+
+  socket.on("disconnect", () => {
+    console.log(`Kullanıcı ayrıldı: ${socket.id}`);
+  });
+
+  io.emit("message", "Merhaba yeni kullanıcı!");
+});
+
+ioServer.listen(SOCKET_PORT, () => {
+  console.log(`Socket.IO Server çalışıyor: http://localhost:${SOCKET_PORT}`);
+});
+
+
+app.listen(PORT, () => {
+  console.log(`Express Server Çalışıyor http://localhost:${PORT}`);
+});
+

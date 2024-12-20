@@ -18,6 +18,16 @@
     font-size: 18px;
     font-weight: 600;
   }
+  .item-price-old {
+    color: #6B7280;
+    font-size: 16px;
+    text-decoration: line-through;
+  }
+  .item-price-new {
+    color: #374151;
+    font-size: 18px;
+    font-weight: 600;
+  }
   .item:hover{
     transform: scale(1.05);
     transition: 0.6s;
