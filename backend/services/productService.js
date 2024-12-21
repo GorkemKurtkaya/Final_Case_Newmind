@@ -1,5 +1,4 @@
 import { v2 as cloudinary } from 'cloudinary';
-
 import Product from "../models/productmodel.js";
 
 // Ürün oluşturma
@@ -31,6 +30,7 @@ export const createProductService = async (userRole, productData, imageFilePath)
     
 };
 
+// Ürün güncelleme
 export const updateProductService = async (userRole, productId, productData) => {
     if (userRole !== "admin") {
         throw new Error("Access denied");
@@ -49,6 +49,8 @@ export const updateProductService = async (userRole, productId, productData) => 
     return updatedProduct;
 };
 
+
+// Ürün silme
 export const deleteProductService = async (userRole, productId) => {
     if (userRole !== "admin") {
         throw new Error("Access denied");
@@ -58,6 +60,8 @@ export const deleteProductService = async (userRole, productId) => {
     return "Product has been deleted...";
 };
 
+
+// Tek Ürün Getirme
 export const getAProductService = async (productId) => {
     const product = await Product.findById(productId);
     if (!product) {
@@ -66,6 +70,8 @@ export const getAProductService = async (productId) => {
     return product;
 };
 
+
+// Tüm Ürünleri Getirme
 export const getAllProductsService = async (query) => {
     const { new: qNew, category: qCategory } = query;
     let products;

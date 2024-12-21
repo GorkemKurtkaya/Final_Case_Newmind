@@ -4,6 +4,7 @@ import CreditCard from '../models/creditCardModel.js';
 
 const router = express.Router();
 
+// Ödeme işlemi
 router.post('/', async (req, res) => {
   try {
     const { orderId, amount, cardName, cardNumber, expiryDate, cvv } = req.body;
@@ -34,6 +35,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Kredi kartı ekleme
 router.post('/add-card', async (req, res) => {
   try {
     const { cardName, cardNumber, expiryDate, cvv } = req.body;
@@ -56,5 +58,6 @@ router.post('/add-card', async (req, res) => {
     res.status(500).json({ message: 'Kart ekleme sırasında bir hata oluştu', error: error.message });
   }
 });
+
 
 export default router;

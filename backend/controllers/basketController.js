@@ -3,6 +3,7 @@ import * as redis from "../utils/redis.js";
 import logger from "../utils/logger.js";
 
 const basketController = {
+    // Sepete ürün ekleme
     addToBasket: async(req,res)=>{
         logger.info("Ürün Sepete Ekleme İşlemi");
         const {userId,product} = req.body;
@@ -29,6 +30,9 @@ const basketController = {
             logger.error("Ürün Sepete Eklenirken Hata Oluştu:",e);
         }
     },
+
+
+    // Sepet Listeleme
     getBasket: async(req,res)=>{
         try{
             logger.info("Sepet Listeleme İşlemi");
@@ -47,6 +51,8 @@ const basketController = {
         }
         
     },
+
+    // Sepet Silme
     delete: async(req,res)=>{
         const {userId} = req.params;
         logger.info("Sepet Silme İşlemi");
@@ -64,6 +70,9 @@ const basketController = {
         }
         
     },
+
+
+    // Sepetteki ürünü güncelleme
     updateCartItem: async (req, res) => {
         const { userId, productId, action } = req.body;
 

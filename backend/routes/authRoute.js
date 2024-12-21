@@ -29,7 +29,6 @@ router.get("/auth", authMiddleWare.authenticateToken, (req, res) => {
 
 // Çerez oluştur
 router.get("/cook", (req, res) => {
-  // Çerezi al
   const cookie = req.cookies["jwt"];
 
   // Eğer çerez varsa, gönder

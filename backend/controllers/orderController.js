@@ -2,7 +2,7 @@ import * as orderService from "../services/orderService.js";
 import logger from "../utils/logger.js";
 
 
-
+// Sipariş Oluşturma
 const createOrder = async (req, res) => {
     logger.info("Sipariş Oluşturma İşlemi");
     if (req.user.role !== "user" && req.user.role !== "admin") {
@@ -30,6 +30,8 @@ const createOrder = async (req, res) => {
     }
 };
 
+
+// Sipariş Güncelleme
 const updateOrder = async (req, res) => {
     try {
         logger.info("Sipariş Güncelleme İşlemi");
@@ -43,6 +45,8 @@ const updateOrder = async (req, res) => {
     }
 };
 
+
+// Sipariş Silme
 const deleteOrder = async (req, res) => {
     try {
         logger.info("Sipariş Silme İşlemi");
@@ -56,6 +60,8 @@ const deleteOrder = async (req, res) => {
     }
 };
 
+
+// Sipariş Getirme
 const getOrder = async (req, res) => {
     try {
         logger.info("Sipariş Getirme İşlemi");
@@ -67,6 +73,8 @@ const getOrder = async (req, res) => {
     }
 };
 
+
+// Kullanıcı Siparişlerini Getirme
 const getUserOrders = async (req, res) => {
     try {
         logger.info("Kullanıcı Siparişlerini Getirme İşlemi");
@@ -79,6 +87,8 @@ const getUserOrders = async (req, res) => {
     }
 };
 
+
+// Tüm Siparişleri Getirme
 const getAllOrders = async (req, res) => {
     if (req.user.role !== "admin") {
         return res.status(403).json({ message: "Access denied" });
@@ -94,6 +104,8 @@ const getAllOrders = async (req, res) => {
     }
 };
 
+
+// Sipariş Gelirini Getirme
 const getOrderIncome = async (req, res) => {
     if (req.user.role !== "admin") {
         return res.status(403).json({ message: "Access denied" });
@@ -106,6 +118,8 @@ const getOrderIncome = async (req, res) => {
     }
 };
 
+
+// Sipariş Durumu Güncelleme
 const updateOrderStatus = async (req, res) => {
     try {
         logger.info("Sipariş Durumu Güncelleme İşlemi");

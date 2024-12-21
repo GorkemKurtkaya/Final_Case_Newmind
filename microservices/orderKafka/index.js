@@ -20,7 +20,6 @@ const kafka = new Kafka({
 const consumer = kafka.consumer({ groupId: 'my-kafka-producer2' })
 
 const run = async () => {
-  // Consuming
   await consumer.connect()
   await consumer.subscribe({ topic: 'order', fromBeginning: true })
   
@@ -37,6 +36,7 @@ const run = async () => {
   })
 }
 
+// Siparişi oluştur
 function createInvoice(message){
   console.log(message)
   return true;
@@ -46,6 +46,6 @@ run().catch(console.error)
 
 
 app.listen(8000, ()=>{
-  console.log('Server is running on port 8000')
+  console.log('orderKafka servisi çalışıyor 8000')
 })
 

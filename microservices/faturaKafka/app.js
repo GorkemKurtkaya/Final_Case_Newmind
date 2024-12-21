@@ -29,7 +29,7 @@ const run = async () => {
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
       const paymentInfo = JSON.parse(message.value.toString());  // String yerine direkt nesne
-      console.log(`Fatura Bilgisi Geldi:`, paymentInfo);  // Nesne olarak yazdır
+      console.log(`Fatura Bilgisi Geldi:`, paymentInfo);  
   
       // Fatura oluştur
       createInvoice(paymentInfo);
@@ -48,7 +48,7 @@ const createInvoice = async (paymentInfo) => {
   });
 
   try {
-    await newInvoice.save();  // MongoDB'ye kaydet
+    await newInvoice.save();  
     console.log('Fatura Oluşturuldu', newInvoice);
   } catch (error) {
     console.error('Error creating invoice:', error);
@@ -57,8 +57,9 @@ const createInvoice = async (paymentInfo) => {
 
 
 
+const PORT = process.env.PORT || 4500;
 
-app.listen(process.env.PORT, () => {
-  console.log(`Invoicing service running on port ${process.env.PORT}`);
-  run();
+app.listen(PORT, () => {
+  console.log(`Fatura service running on port ${PORT}`);
+  run().catch(console.error);
 });

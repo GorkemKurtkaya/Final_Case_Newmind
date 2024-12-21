@@ -8,21 +8,15 @@ const userSchema = new Schema({
     name: { type: String, required: true },
     email: {
         type: String,
-        required: [true, "Email is required"],
+        required: [true, "Mail adresi boş bırakılamaz"],
         unique: true,
-        validate: [validator.isEmail, "Invalid email address"]
+        validate: [validator.isEmail, "Mail adresi geçerli değil"]
     },
     password: {
         type: String,
-        required: [true, "Password is required"],
-        minLength: [3, "Password must be at least 3 characters long"]
+        required: [true, "Şifre alanı boş bırakılamaz"],
+        minLength: [3, "Şifre en az 3 karakter olmalıdır"]
     },
-    // address: [
-    //     {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: "Address"
-    // }
-    // ],
     role: {
         type: String,
         enum: ["user", "admin"],
@@ -39,7 +33,7 @@ userSchema.pre("save", function (next) {
     }
 
     bcrypt.hash(user.password, 10, (error, hash) => {
-        if (error) return next(error); // Hata kontrolü eklendi
+        if (error) return next(error); 
         user.password = hash;
         next();
     });

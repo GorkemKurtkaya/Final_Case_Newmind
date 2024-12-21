@@ -1,6 +1,8 @@
 import { registerUserService, loginUserService } from "../services/authService.js";
 import logger from "../utils/logger.js";
 
+
+// Register İşlemi
 const registerUser = async (req, res) => {
     try {
         logger.info("Registering user");
@@ -18,6 +20,7 @@ const registerUser = async (req, res) => {
     }
 };
 
+// Login İşlemi
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -51,7 +54,7 @@ const loginUser = async (req, res) => {
 };
 
 
-
+// Logout İşlemi
 const getLogout = (req, res) => {
     res.cookie("jwt", "", {
         maxAge: 0, 

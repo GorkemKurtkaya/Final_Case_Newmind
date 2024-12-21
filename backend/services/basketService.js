@@ -5,10 +5,9 @@ import { createClient } from 'redis';
 
 
 let redisClient;
-
+// Redis client oluşturma
 async function createRedisClient() {
     if (!redisClient) {
-        // Use environment variables or docker service name for Redis connection
         redisClient = createClient({
             url: process.env.REDIS_URL || 'redis://redis:6379'
         });

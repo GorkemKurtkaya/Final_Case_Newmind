@@ -1,32 +1,7 @@
 import User from "../models/usermodel.js";
-import bcrypt from 'bcryptjs';
 
 
 
-// BURDA BİR HATA VAR ŞİFRE DEĞİŞTİRİNCE KOMPLE ŞİFRE BOZULUYOR BUNU ÇÖZECEM
-const changePasswordService = async (userId, oldPassword, newPassword) => {
-    const user = await User.findById(userId);
-
-    if (!user) {
-        throw new Error("User not found");
-    }
-
-    const same = await bcrypt.compare(oldPassword, user.password);
-    if (!same) {
-        console.log("Password mismatch"); // Eski parolayı doğrulamada hata
-        throw new Error("Invalid password");
-    }
-
-    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
-    user.password = hashedNewPassword;
-    await user.save();
-
-    console.log("yeni password", newPassword);
-    console.log("hashedNewPassword", hashedNewPassword);
-    console.log("eski password", oldPassword);
-
-    return "Password changed successfully";
-};
 
 const changeNameandMailService = async (userId, newName,newMail) => {
     const user = await User.findById(userId);
@@ -55,4 +30,4 @@ const getUserByIdService = async (userId) => {
 
 
 
-export { changePasswordService, changeNameandMailService, getUserByIdService};
+export {  changeNameandMailService, getUserByIdService};

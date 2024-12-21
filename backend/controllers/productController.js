@@ -1,10 +1,5 @@
-import {
-    createProductService,
-    updateProductService,
-    deleteProductService,
-    getAProductService,
-    getAllProductsService
-} from "../services/productService.js";
+
+import * as productService from "../services/productService.js";
 import fs from "fs";
 import logger from "../utils/logger.js";
 import { searchProducts, addProduct,elasticdeleteProduct } from "../utils/elasticsearch.js";
@@ -12,11 +7,11 @@ import { searchProducts, addProduct,elasticdeleteProduct } from "../utils/elasti
 
 
 
-
+// Ürün oluşturma
 export const createProduct = async (req, res) => {
     try {
         logger.info("Ürün Oluşturma İşlemi");
-        const product = await createProductService(req.user.role, req.body, req.files.image.tempFilePath);
+        const product = await productService.createProductService(req.user.role, req.body, req.files.image.tempFilePath);
         await addProduct(req.body);
 
         fs.unlink(req.files.image.tempFilePath, (err) => {
@@ -48,6 +43,8 @@ export const createProduct = async (req, res) => {
     }
 };
 
+
+// Ürün güncelleme
 export const updateProduct = async (req, res) => {
     if (!req.params.id) {
         return res.status(400).json({
@@ -58,7 +55,7 @@ export const updateProduct = async (req, res) => {
 
     try {
         logger.info("Ürün Güncelleme İşlemi");
-        const updatedProduct = await updateProductService(req.user.role, req.params.id, req.body);
+        const updatedProduct = await productService.updateProductService(req.user.role, req.params.id, req.body);
         res.status(200).json(updatedProduct);
         console.log("Ürün güncellendi");
         logger.info("Ürün Güncellendi");
@@ -72,10 +69,12 @@ export const updateProduct = async (req, res) => {
     }
 };
 
+
+// Ürün silme
 export const deleteProduct = async (req, res) => {
     try {
         logger.info("Ürün Silme İşlemi");
-        const message = await deleteProductService(req.user.role, req.params.id);
+        const message = await productService.deleteProductService(req.user.role, req.params.id);
         res.status(200).json({
             succeeded: true,
             message,
@@ -93,10 +92,12 @@ export const deleteProduct = async (req, res) => {
     }
 };
 
+
+// Tek Ürün Getirme
 export const getAProduct = async (req, res) => {
     try {
         logger.info("Ürün Getirme İşlemi");
-        const product = await getAProductService(req.params.id);
+        const product = await productService.getAProductService(req.params.id);
         res.status(200).json(product);
         console.log("Ürün getirildi");
     } catch (error) {
@@ -108,10 +109,12 @@ export const getAProduct = async (req, res) => {
     }
 };
 
+
+// Tüm Ürünleri Getirme
 export const getAllProduct = async (req, res) => {
     try {
         logger.info("Tüm Ürünleri Getirme İşlemi");
-        const products = await getAllProductsService(req.query);
+        const products = await productService.getAllProductsService(req.query);
         res.status(200).json(products);
         console.log("Tüm ürünler getirildi");
     } catch (error) {
@@ -124,6 +127,7 @@ export const getAllProduct = async (req, res) => {
 };
 
 
+// ElasticSearch ile Ürün Arama
 export const searchProduct = async (req, res) => {
     const { text } = req.params;
     try {

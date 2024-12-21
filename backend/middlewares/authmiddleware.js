@@ -1,6 +1,8 @@
 import User from "../models/usermodel.js";
 import jwt from "jsonwebtoken";
 
+
+// Kullanıcı kontrolü
 const checkUser = async (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
@@ -21,6 +23,8 @@ const checkUser = async (req, res, next) => {
   }
 };
 
+
+// Token kontrolü
 const authenticateToken = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
@@ -31,12 +35,10 @@ const authenticateToken = async (req, res, next) => {
           console.log(err.message);
           return res.status(401).send("Access denied");
         } else {
-          // Kullanıcıyı veritabanından getir
           const user = await User.findById(decodedToken.userId);
           if (!user) {
             return res.status(401).send("User not found");
           }
-          // Kullanıcı bilgilerini req.user'a ekle
           req.user = user;
           next();
         }

@@ -52,6 +52,7 @@ const updateOrderService = async (orderId, orderData) => {
     );
 };
 
+// Sipariş durumunu güncelleme
 const updateOrderStatusService = async (orderId, status) => {
     return await Order.findByIdAndUpdate(
         orderId,
@@ -60,11 +61,13 @@ const updateOrderStatusService = async (orderId, status) => {
     );
 }
 
+
 // Sipariş silme
 const deleteOrderService = async (orderId) => {
     await Order.findByIdAndDelete(orderId);
     return "Sipariş silindi";
 };
+
 
 // Sipariş getirme
 const getOrderService = async (orderId) => {
@@ -73,15 +76,18 @@ const getOrderService = async (orderId) => {
     return order;
 };
 
+
 // Kullanıcıya ait siparişleri getirme
 const getUserOrdersService = async (userId) => {
     return await Order.find({ userId });
 };
 
+
 // Tüm siparişleri getirme
 const getAllOrdersService = async () => {
     return await Order.find();
 };
+
 
 // Sipariş gelirlerini getirme
 const getOrderIncomeService = async () => {
@@ -105,6 +111,7 @@ const getOrderIncomeService = async () => {
         },
     ]);
 };
+
 
 export {
     createOrderService,

@@ -22,7 +22,8 @@ app.use(cors({
 // Rotayı bağlama
 app.use('/payment', paymentController);
 
-const PORT = process.env.PORT 
+const PORT = process.env.PORT || 3500; 
+
 app.listen(PORT, () => {
   console.log(`Payment service running on port ${PORT}`);
 });
