@@ -10,6 +10,8 @@ import { checkout } from "./services/PaymentService";
 import {  Result } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
+
+// Sepetimizdeki ürünleri listelemek için CartItems fonksiyonu oluşturuldu.
 const CartItems = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [loading, setLoading] = useState(true);

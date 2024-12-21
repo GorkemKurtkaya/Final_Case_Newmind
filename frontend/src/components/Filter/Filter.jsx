@@ -25,7 +25,7 @@ const Filter = ({ applyFilters, handleSearch, search }) => {
         </select>
       </div>
 
-      {/* Fiyat aralığı seçimi */}
+      {/* Fiyat aralığı seçimi  */}
       <div className="filter-item">
         <label htmlFor="priceRange">Fiyat Aralığı:</label>
         <select id="priceRange" onChange={applyFilters}>

@@ -2,6 +2,8 @@ import React from 'react';
 import './OurProducts.css';
 import Item from '../Item/Item';
 
+
+// Ürünlerin listelendiği kısım
 const OurProducts = (props) => {
   return (
     <div className='our-products'>

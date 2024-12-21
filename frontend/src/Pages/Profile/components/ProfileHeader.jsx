@@ -1,6 +1,8 @@
 import React from 'react';
 import profile from '../../../assets/profile.png';
 
+
+// Profil sayfasının başlık kısmı (Fotoğraf ve başlık)
 const ProfileHeader = () => (
   <div className="profile-header">
     <div className="profile-photo">

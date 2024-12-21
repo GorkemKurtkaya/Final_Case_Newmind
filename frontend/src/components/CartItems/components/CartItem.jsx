@@ -2,6 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faX } from "@fortawesome/free-solid-svg-icons";
 
+
+// Sepetteki ürünlerin gösterildiği kısım
 const CartItem = ({ product, handleUpdateCartItem }) => {
   return (
     <div className="cartitems-format">

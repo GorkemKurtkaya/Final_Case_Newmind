@@ -7,7 +7,7 @@ const Breadcrums = (props) => {
     const { product } = props;
     return (
         <div className='breadcrums'>
-            HOME 
+            Ana Sayfa
             <FontAwesomeIcon icon={faArrowRight} /> {product.category} 
             <FontAwesomeIcon icon={faArrowRight} /> {product.title}
         </div>

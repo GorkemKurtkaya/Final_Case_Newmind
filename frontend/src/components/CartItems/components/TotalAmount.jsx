@@ -1,5 +1,7 @@
 import React from "react";
 
+
+// Toplam tutarın gösterildiği kısım
 const TotalAmount = ({ totalAmount, setIsModalOpen, handleRemoveCart }) => {
   return (
     <div className="cartitems-total">

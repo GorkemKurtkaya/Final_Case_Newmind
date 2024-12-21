@@ -4,6 +4,8 @@ import { ShopContext } from "../../Context/ShopContext";
 import { useParams } from "react-router-dom";
 import { message } from "antd";
 
+
+// Ürün detaylarının gösterildiği kısım
 const ProductDisplay = (props) => {
   const { productId } = useParams();
   const { product } = props;

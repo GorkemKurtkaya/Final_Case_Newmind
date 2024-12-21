@@ -2,6 +2,8 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
+
+// Profil sayfasındaki bilgilerin gösterildiği kısım
 const ProfileInfo = ({
   user,
   isEditing,

@@ -20,6 +20,8 @@ function App() {
         <Routes>
 
           <Route path="/" element={<Shop gender="all" />} />
+
+          
           <Route path="/notebook" element={<ShopCategory banner={laptopindirim} category="notebook" />} />
           <Route path="/phone" element={<ShopCategory  banner={telefonindirim} category="phone" />} />
           <Route path="/tablet" element={<ShopCategory banner={tabletindirim}  category="tablet" />} />

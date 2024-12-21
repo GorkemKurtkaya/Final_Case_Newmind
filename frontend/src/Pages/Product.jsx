@@ -4,14 +4,16 @@ import Breadcrums from "../Components/BreadCrums/BreadCrums";
 import { useParams } from "react-router-dom";
 import { fetchProduct } from "../Context/api";
 
+// Ürün detaylarının gösterildiği kısım
 const Product = () => {
-  const { productId } = useParams(); // productId parametresini alıyoruz
+  const { productId } = useParams(); 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // useEffect hook'u ile sayfa yüklendiğinde ürün bilgilerini getiriyoruz
   useEffect(() => {
     const fetchSingleProduct = async () => {
-      if (productId) {  // productId parametresi var mı kontrol edelim
+      if (productId) {  
         try {
           const response = await fetchProduct(productId); 
           setProduct(response.data);

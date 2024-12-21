@@ -1,14 +1,13 @@
 import React from "react";
 import "./Hero.css";
 import { Carousel } from "antd";
-
-// Console'da resim yollarını kontrol edin
 import laptopindirim from "../../assets/laptopindirim.jpg";
 import tabletindirim from "../../assets/tabletindirim.jpg";
 import telefonindirim from "../../assets/telefonindirim.jpg";
 
 
 
+// Anasayfada slider kısmı
 const Hero = () => {
   return (
     <div className="hero">

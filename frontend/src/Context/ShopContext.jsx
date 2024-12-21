@@ -4,6 +4,8 @@ import Cookies from 'js-cookie';
 import {  message } from 'antd';
 export const ShopContext = createContext(null);
 
+
+// Sepet ve ürünlerin tutulduğu context
 const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [products, setProducts] = useState([]);

@@ -5,6 +5,8 @@ import ProfileInfo from './components/ProfileInfo';
 import Orders from './components/ProfileOrders';
 import { fetchUserData, fetchOrders, updateUserData } from './services/ProfileService';
 
+
+// Kullanıcı profil sayfası
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);

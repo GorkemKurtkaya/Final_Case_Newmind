@@ -2,6 +2,8 @@ import React from 'react';
 import './Item.css';
 import { Link } from 'react-router-dom';
 
+
+// Ürünlerin listelendiği kısım
 const Item = (props) => {
   const calculateDiscountedPrice = (price, category) => {
     if (category === "notebook") {

@@ -8,12 +8,13 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 const Shop = () => {
   const [ourProducts, setOurProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [search, setSearch] = useState(""); // Arama için state
+  const [search, setSearch] = useState(""); 
   const [filters, setFilters] = useState({
     category: '',
     priceRange: '',
   });
 
+  // Ürünleri çekme
   const fetchInfo = () => {
     fetch('http://localhost:3000/product/')
       .then((res) => res.json())
@@ -34,7 +35,7 @@ const Shop = () => {
     );
     setFilteredProducts(searchFilteredProducts);
 
-    // Sayfanın scroll pozisyonunu koruyun
+    // Sayfanın scroll pozisyonunu koruma
     window.scrollTo(0, 0);
   }, [search, ourProducts]);
 
@@ -56,6 +57,7 @@ const Shop = () => {
     setFilteredProducts(updatedProducts);
   };
 
+  // Filtreleri uygulama
   const applyFilters = (event) => {
     const { id, value } = event.target;
     setFilters((prevFilters) => {

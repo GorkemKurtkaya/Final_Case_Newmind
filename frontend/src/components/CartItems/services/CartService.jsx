@@ -2,6 +2,8 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:3000";
 
+
+// Sepetimizdeki ürünleri getiren fonksiyon
 export const fetchCartItems = async (userId) => {
   try {
     const basketResponse = await axios.get(`${BASE_URL}/basket/${userId}`);
@@ -25,6 +27,7 @@ export const fetchCartItems = async (userId) => {
   }
 };
 
+// Sepetimizdeki ürünleri güncelleyen fonksiyon
 export const updateCartItem = async (userId, productId, action) => {
   try {
     await axios.post(`${BASE_URL}/basket/update`, {
@@ -40,6 +43,7 @@ export const updateCartItem = async (userId, productId, action) => {
   }
 };
 
+// Sepeti Silme Fonksiyonu
 export const removeCartItems = async (userId) => {
   try {
     await axios.delete(`${BASE_URL}/basket/${userId}`);

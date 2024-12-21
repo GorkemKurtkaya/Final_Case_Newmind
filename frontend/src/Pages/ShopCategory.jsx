@@ -4,6 +4,7 @@ import Item from "../Components/Item/Item";
 import { Link } from "react-router-dom";
 
 
+// Kategoriye göre ürünlerin listelendiği kısım
 const ShopCategory = (props) => {
 
   const [allproducts, setAllProducts] = useState([]);
