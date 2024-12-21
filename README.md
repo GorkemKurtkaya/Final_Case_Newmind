@@ -5,6 +5,8 @@
 
 Bu Proje Patika.dev/Newmind AI Fullstack Bootcamp için hazırlamış olduğum e-ticaret projesidir. Proje, backend, frontend ve microservices olmak üzere üç ana bileşenden oluşmaktadır. Her bir bileşen, modern teknolojiler kullanılarak geliştirilmiştir ve Docker ile kolayca çalıştırılabilir durumdadır.
 
+## Dökümantasyon
+- https://documenter.getpostman.com/view/33385054/2sAYJ3F2bo
 
 ## Proje İçeriği
 
