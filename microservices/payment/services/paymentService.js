@@ -10,9 +10,18 @@ const kafka = new Kafka({
 });
 const producer = kafka.producer();
 
-/**
- * Kredi Kartı Doğrulama veya Ekleme
- */
+
+export const addCreditCard = async (req, res) => {
+  try {
+    const { cardName, cardNumber, expiryDate, cvv } = req.body;
+    const card = await processCreditCard({ cardName, cardNumber, expiryDate, cvv });
+
+    res.status(201).json(card);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
 export const processCreditCard = async ({ cardName, cardNumber, expiryDate, cvv }) => {
   let card = await CreditCard.findOne({ cardNumber });
 

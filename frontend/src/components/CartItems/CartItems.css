@@ -108,3 +108,151 @@
     cursor: pointer;
     margin: 0px 5px;
   }
+
+
+
+  /* Ekranlar arası geçişlerde tasarımın bozulmaması için media query kullandım. */
+
+  @media(max-width: 1280px) {
+    .cartitems {
+      margin: 50px 100px;
+    }
+  
+    .cartitems-format-main, .cartitems-format {
+      grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
+      gap: 50px;
+      font-size: 16px;
+    }
+  
+    .cartitems-product-icon {
+      height: 50px;
+    }
+  
+    .cartitems-quatity {
+      width: 55px;
+      height: 45px;
+    }
+  
+    .cartitems-total-item {
+      font-size: 16px;
+    }
+  
+    .cartitems-total-button {
+      width: 220px;
+      font-size: 14px;
+    }
+  
+    .cartitems-total-delete-button {
+      width: 140px;
+      font-size: 14px;
+    }
+  }
+  
+  @media(max-width: 1024px) {
+    .cartitems {
+      margin: 40px 60px;
+    }
+  
+    .cartitems-format-main, .cartitems-format {
+      grid-template-columns: 0.5fr 2fr 1fr 1fr;
+      gap: 30px;
+      font-size: 15px;
+    }
+  
+    .cartitems-product-icon {
+      height: 45px;
+    }
+  
+    .cartitems-quatity {
+      width: 50px;
+      height: 40px;
+    }
+  
+    .cartitems-total-button {
+      width: 200px;
+      font-size: 14px;
+    }
+  
+    .cartitems-total-delete-button {
+      width: 120px;
+      font-size: 14px;
+    }
+  
+    .cartitems-mini-buttons {
+      width: 35px;
+      height: 35px;
+    }
+  }
+  
+  @media(max-width: 800px) {
+    .cartitems {
+      margin: 30px 30px;
+    }
+  
+    .cartitems-format-main, .cartitems-format {
+      grid-template-columns: 0.5fr 1.5fr 1fr 1fr;
+      gap: 20px;
+      font-size: 14px;
+    }
+  
+    .cartitems-product-icon {
+      height: 40px;
+    }
+  
+    .cartitems-quatity {
+      width: 45px;
+      height: 35px;
+    }
+  
+    .cartitems-total-button {
+      width: 180px;
+      font-size: 13px;
+    }
+  
+    .cartitems-total-delete-button {
+      width: 110px;
+      font-size: 13px;
+    }
+  
+    .cartitems-mini-buttons {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  
+  @media(max-width: 500px) {
+    .cartitems {
+      margin: 20px 15px;
+    }
+  
+    .cartitems-format-main, .cartitems-format {
+      grid-template-columns: 0.5fr 1fr 1fr;
+      gap: 10px;
+      font-size: 12px;
+    }
+  
+    .cartitems-product-icon {
+      height: 35px;
+    }
+  
+    .cartitems-quatity {
+      width: 40px;
+      height: 30px;
+    }
+  
+    .cartitems-total-button {
+      width: 160px;
+      font-size: 12px;
+    }
+  
+    .cartitems-total-delete-button {
+      width: 100px;
+      font-size: 12px;
+    }
+  
+    .cartitems-mini-buttons {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  

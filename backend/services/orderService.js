@@ -52,6 +52,14 @@ const updateOrderService = async (orderId, orderData) => {
     );
 };
 
+const updateOrderStatusService = async (orderId, status) => {
+    return await Order.findByIdAndUpdate(
+        orderId,
+        { $set: { status } },
+        { new: true }
+    );
+}
+
 // Sipariş silme
 const deleteOrderService = async (orderId) => {
     await Order.findByIdAndDelete(orderId);
@@ -106,4 +114,5 @@ export {
     getUserOrdersService,
     getAllOrdersService,
     getOrderIncomeService,
+    updateOrderStatusService
 };

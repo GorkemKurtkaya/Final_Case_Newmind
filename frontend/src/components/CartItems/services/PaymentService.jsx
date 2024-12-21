@@ -5,7 +5,7 @@ const ORDER_URL = "http://localhost:3000/orders";
 
 export const checkout = async (userId, cartProducts, paymentData) => {
   try {
-    // 1. Sipariş oluşturma kısmı
+    // 1. Sipariş oluşturma
     const orderResponse = await axios.post(
       ORDER_URL,
       {
@@ -37,7 +37,20 @@ export const checkout = async (userId, cartProducts, paymentData) => {
       { withCredentials: true }
     );
 
-    if (paymentResponse.data.message === "Ödeme Başarılı") {
+    const paymentSuccessful = paymentResponse.status===200;
+
+    // 3. Sipariş durumunu güncelleme
+    const updatedOrder = await axios.put(
+      `${ORDER_URL}/status/${orderId}`,
+      { status: paymentSuccessful ? "completed" : "failed" },
+      { withCredentials: true }
+    );
+
+    if (updatedOrder.status !== 200) {
+      throw new Error("Sipariş güncellenirken bir hata oluştu.");
+    }
+
+    if (paymentSuccessful) {
       return { success: true };
     } else {
       throw new Error("Ödeme sırasında bir hata oluştu.");

@@ -1,12 +1,4 @@
-import{
-    createOrderService,
-    updateOrderService,
-    deleteOrderService,
-    getOrderService,
-    getUserOrdersService,
-    getAllOrdersService,
-    getOrderIncomeService
-} from "../services/orderService.js";
+import * as orderService from "../services/orderService.js";
 import logger from "../utils/logger.js";
 
 
@@ -25,7 +17,7 @@ const createOrder = async (req, res) => {
 
     try {
         logger.info("Sipariş Oluşturuluyor");
-        const savedOrder = await createOrderService(req.body);
+        const savedOrder = await orderService.createOrderService(req.body);
         res.status(200).json({ 
             message: "Sipariş başarıyla oluşturuldu!",
             order: savedOrder // Order objesini response'a ekledik
@@ -41,7 +33,7 @@ const createOrder = async (req, res) => {
 const updateOrder = async (req, res) => {
     try {
         logger.info("Sipariş Güncelleme İşlemi");
-        const updatedOrder = await updateOrderService(req.params.id, req.body);
+        const updatedOrder = await orderService.updateOrderService(req.params.id, req.body);
         res.status(200).json(updatedOrder);
         console.log("Sipariş Güncellendi");
         logger.info("Sipariş Güncellendi");
@@ -54,7 +46,7 @@ const updateOrder = async (req, res) => {
 const deleteOrder = async (req, res) => {
     try {
         logger.info("Sipariş Silme İşlemi");
-        const message = await deleteOrderService(req.params.id);
+        const message = await orderService.deleteOrderService(req.params.id);
         res.status(200).json({ message });
         console.log("Sipariş Silindi");
         logger.info("Sipariş Silindi");
@@ -67,7 +59,7 @@ const deleteOrder = async (req, res) => {
 const getOrder = async (req, res) => {
     try {
         logger.info("Sipariş Getirme İşlemi");
-        const order = await getOrderService(req.params.id);
+        const order = await orderService.getOrderService(req.params.id);
         res.status(200).json(order);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -78,7 +70,7 @@ const getOrder = async (req, res) => {
 const getUserOrders = async (req, res) => {
     try {
         logger.info("Kullanıcı Siparişlerini Getirme İşlemi");
-        const orders = await getUserOrdersService(req.params.userId);
+        const orders = await orderService.getUserOrdersService(req.params.userId);
         res.status(200).json(orders);
         logger.info("Kullanıcı Siparişleri Getirildi");
     } catch (err) {
@@ -93,7 +85,7 @@ const getAllOrders = async (req, res) => {
     }
     try {
         logger.info("Tüm Siparişleri Getirme İşlemi");
-        const orders = await getAllOrdersService();
+        const orders = await orderService.getAllOrdersService();
         res.status(200).json(orders);
         logger.info("Tüm Siparişler Getirildi");
     } catch (err) {
@@ -107,12 +99,25 @@ const getOrderIncome = async (req, res) => {
         return res.status(403).json({ message: "Access denied" });
     }
     try {
-        const income = await getOrderIncomeService();
+        const income = await orderService.getOrderIncomeService();
         res.status(200).json(income);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
+
+const updateOrderStatus = async (req, res) => {
+    try {
+        logger.info("Sipariş Durumu Güncelleme İşlemi");
+        const updatedOrder = await orderService.updateOrderStatusService(req.params.id, req.body.status);
+        res.status(200).json(updatedOrder);
+        console.log("Sipariş Durumu Güncellendi");
+        logger.info("Sipariş Durumu Güncellendi");
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+        logger.error("Sipariş Durumu Güncellenirken Hata Oluştu:", err);
+    }
+}
 
 export {
     createOrder,
@@ -121,5 +126,6 @@ export {
     getOrder,
     getUserOrders,
     getAllOrders,
-    getOrderIncome
+    getOrderIncome,
+    updateOrderStatus
 };

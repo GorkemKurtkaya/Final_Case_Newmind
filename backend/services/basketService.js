@@ -71,23 +71,20 @@ async function getBasket(params){
 }
 
 // Sepeti silme
-async function removeCart(params, res){
+async function removeCart(params) {
     const { userId } = params; 
     const cartKey = String(userId);  
-    
     try {
-        const client = await createClient()
-            .on('error', err => console.log('Redis Client Error', err))
-            .connect();
+        const client = createClient();
+        client.on('error', err => console.error('Redis Client Error', err));
+        await client.connect();
         const result = await client.del(cartKey);
-        if(result === 0){
-            return res.status(404).send({message: "Ürün bulunamadı"});
-        }
-        
-        return res.status(200).send({message: "Ürün başarıyla silindi"});
+        return result === 0 
+            ? { success: false, message: "Ürün bulunamadı" }
+            : { success: true, message: "Ürün başarıyla silindi" };
     } catch (e) {
-        console.log(e);
-        return res.status(500).send({message: "Internal Server Error"});
+        console.error(e);
+        throw new Error("Internal Server Error");
     }
 }
 

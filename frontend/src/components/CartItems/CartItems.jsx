@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import { fetchCartItems, updateCartItem, removeCartItems } from "./services/CartService";
 import { checkout } from "./services/PaymentService";
 import {  Result } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const CartItems = () => {
   const [cartProducts, setCartProducts] = useState([]);
@@ -16,6 +17,7 @@ const CartItems = () => {
   const userId = Cookies.get("user");
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
 
   const info = () => {
     messageApi.success("Siparişiniz başarıyla tamamlandı! Teşekkür ederiz.");
@@ -57,13 +59,23 @@ const CartItems = () => {
   const handleCheckout = async (paymentData) => {
     try {
       const result = await checkout(userId, cartProducts, paymentData);
+      if(paymentData.cardNumber.length !== 16){
+        messageApi.error("Kart Numarası 16 haneli olmalıdır.");
+      } else if(paymentData.expiryDate.length !== 5){
+        messageApi.error("Son Kullanma Tarihi AA/YY formatında olmalıdır.");
+      } else if(paymentData.cvv.length !== 3){
+        messageApi.error("CVV 3 haneli olmalıdır.");
+      }
+
       if (result.success) {
+        await messageApi.success("Siparişiniz başarıyla tamamlandı! Teşekkür ederiz.");
         await handleRemoveCart();
         setIsModalOpen(false);
-        message.success("Siparişiniz başarıyla tamamlandı! Teşekkür ederiz.");
+
+        navigate('/profile');
       }
     } catch (error) {
-      alert("Sipariş tamamlama sırasında bir hata oluştu: " + error.message);
+      messageApi.error("Sipariş tamamlama sırasında bir hata oluştu. Kart Bilgilerinizi Kontrol Ediniz!!!! " + error.message);
     }
   };
 

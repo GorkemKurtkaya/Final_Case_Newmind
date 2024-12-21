@@ -36,3 +36,78 @@
     font-size: 18px;
     font-weight: 500;
   }
+
+  /* Ekranlar arası geçişlerde tasarımın bozulmaması için media query kullandım. */
+
+  @media(max-width: 1280px) {
+    .shopcategory-indexSort {
+      margin: 0px 120px;
+    }
+  
+    .shopcategory-products {
+      grid-template-columns: 1fr 1fr 1fr;
+      row-gap: 60px;
+    }
+  
+    .shopcategory-loadmore {
+      width: 200px;
+      height: 60px;
+      font-size: 16px;
+    }
+  }
+  
+  @media(max-width: 1024px) {
+    .shopcategory-indexSort {
+      margin: 0px 80px;
+    }
+  
+    .shopcategory-products {
+      grid-template-columns: 1fr 1fr 1fr;
+      row-gap: 50px;
+    }
+  
+    .shopcategory-loadmore {
+      width: 180px;
+      height: 50px;
+      font-size: 14px;
+    }
+  }
+  
+  @media(max-width: 800px) {
+    .shopcategory-indexSort {
+      margin: 0px 40px;
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .shopcategory-products {
+      grid-template-columns: 1fr 1fr;
+      row-gap: 40px;
+    }
+  
+    .shopcategory-loadmore {
+      width: 150px;
+      height: 45px;
+      font-size: 12px;
+    }
+  }
+  
+  @media(max-width: 500px) {
+    .shopcategory-indexSort {
+      margin: 0px 20px;
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .shopcategory-products {
+      grid-template-columns: 1fr;
+      row-gap: 30px;
+    }
+  
+    .shopcategory-loadmore {
+      width: 140px;
+      height: 40px;
+      font-size: 12px;
+    }
+  }
+  

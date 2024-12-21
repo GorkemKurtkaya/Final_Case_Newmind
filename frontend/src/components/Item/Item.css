@@ -32,3 +32,83 @@
     transform: scale(1.05);
     transition: 0.6s;
   }
+
+    /* Ekranlar arası geçişlerde tasarımın bozulmaması için media query kullandım. */
+
+    @media(max-width: 1280px) {
+      .item {
+        width: 300px;
+      }
+      .item img {
+        width: 300px;
+        height: 360px;
+      }
+      .item-price {
+        font-size: 16px;
+      }
+      .item-price-old {
+        font-size: 14px;
+      }
+      .item-price-new {
+        font-size: 16px;
+      }
+    }
+    
+    @media(max-width: 1024px) {
+      .item {
+
+        width: 250px;
+      }
+      .item img {
+        margin-top: 150px;
+        width: 250px;
+        height: 300px;
+      }
+      .item-price {
+        font-size: 14px;
+      }
+      .item-price-old {
+        font-size: 12px;
+      }
+      .item-price-new {
+        font-size: 14px;
+      }
+    }
+    
+    @media(max-width: 800px) {
+      .item {
+        width: 200px;
+      }
+      .item img {
+        width: 200px;
+        height: 250px;
+      }
+      .item-price {
+        font-size: 12px;
+      }
+      .item-price-old {
+        font-size: 12px;
+      }
+      .item-price-new {
+        font-size: 12px;
+      }
+    }
+    
+    @media(max-width: 500px) {
+      .item {
+        width: 180px;
+      }
+      .item img {
+        width: 180px;
+        height: 230px;
+      }
+      .item-price {
+        font-size: 12px;
+      }
+      .item-price-old {
+        font-size: 10px;
+      }
+      .item-price-new {
+        font-size: 12px;
+      }
+    }

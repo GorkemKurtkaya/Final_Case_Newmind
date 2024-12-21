@@ -6,11 +6,13 @@ const router = express.Router();
 
 router.post('/',authMiddleWare.authenticateToken, orderController.createOrder);
 router.put('/:id',authMiddleWare.authenticateToken, orderController.updateOrder);
+router.put("/status/:id", orderController.updateOrderStatus);
 router.delete('/:id',authMiddleWare.authenticateToken, orderController.deleteOrder);
 router.get("/find/:userId",authMiddleWare.authenticateToken, orderController.getUserOrders);
 router.get("/",authMiddleWare.authenticateToken, orderController.getAllOrders);
 router.get("/income",authMiddleWare.authenticateToken, orderController.getOrderIncome);
 router.get("/findorder/:id",authMiddleWare.authenticateToken, orderController.getOrder);
+
 
 
 

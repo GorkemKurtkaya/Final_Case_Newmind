@@ -84,3 +84,106 @@
     display: none;
   }
 
+
+  /* Ekranlar arası geçişlerde tasarımın bozulmaması için media query kullandım. */
+  @media(max-width: 1280px) {
+    .nav-menu {
+      font-size: 18px;
+      gap: 40px;
+    }
+  
+    .nav-logo {
+      width: 300px;
+      height: 80px;
+    }
+  
+    .nav-menu li {
+      gap: 2px;
+    }
+  
+    .nav-login-cart button {
+      width: 90px;
+      height: 50px;
+      font-size: 18px;
+    }
+  }
+  
+  @media(max-width: 1024px) {
+    .nav-menu {
+      font-size: 16px;
+      gap: 30px;
+    }
+  
+    .nav-logo {
+      width: 250px;
+      height: 70px;
+    }
+  
+    .nav-login-cart button {
+      width: 80px;
+      height: 45px;
+      font-size: 16px;
+    }
+  }
+  
+  @media(max-width: 800px) {
+    .nav {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .nav-logo {
+      width: 200px;
+      height: 60px;
+    }
+  
+    .nav-menu {
+      flex-direction: column;
+      gap: 20px;
+      font-size: 14px;
+    }
+  
+    .nav-login-cart {
+      gap: 30px;
+    }
+  
+    .nav-login-cart button {
+      width: 70px;
+      height: 40px;
+      font-size: 14px;
+    }
+  }
+  
+  @media(max-width: 500px) {
+    .nav {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .nav-logo {
+      width: 150px;
+      height: 50px;
+    }
+  
+    .nav-menu {
+      font-size: 12px;
+      gap: 15px;
+    }
+  
+    .nav-login-cart {
+      gap: 20px;
+    }
+  
+    .nav-login-cart button {
+      width: 60px;
+      height: 35px;
+      font-size: 12px;
+    }
+  
+    .nav-dropdown {
+      display: block;
+      font-size: 14px;
+      color: #551A8B;
+      text-align: center;
+    }
+  }

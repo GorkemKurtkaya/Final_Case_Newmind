@@ -76,3 +76,156 @@
       font-weight: 600;
   }
   
+
+  @media(max-width: 1280px) {
+    .productdisplay {
+      margin: 0px 100px;
+    }
+  
+    .productdisplay-left {
+      gap: 12px;
+    }
+  
+    .productdisplay-main-img {
+      width: 500px;
+      height: 600px;
+    }
+  
+    .productdisplay-right {
+      margin: 0px 50px;
+    }
+  
+    .productdisplay-right h1 {
+      font-size: 35px;
+    }
+  
+    .productdisplay-right-prices {
+      font-size: 22px;
+    }
+  
+    .productdisplay-right-size h1 {
+      font-size: 18px;
+    }
+  
+    .productdisplay-right-sizes {
+      gap: 15px;
+    }
+  
+    .productdisplay-right button {
+      width: 180px;
+      font-size: 14px;
+    }
+  }
+  
+  @media(max-width: 1024px) {
+    .productdisplay {
+      margin: 0px 60px;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .productdisplay-left {
+      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .productdisplay-main-img {
+      width: 400px;
+      height: 500px;
+    }
+  
+    .productdisplay-right {
+      margin: 20px 0px;
+      align-items: center;
+    }
+  
+    .productdisplay-right h1 {
+      font-size: 28px;
+    }
+  
+    .productdisplay-right-prices {
+      font-size: 20px;
+      gap: 20px;
+    }
+  
+    .productdisplay-right-size h1 {
+      font-size: 16px;
+    }
+  
+    .productdisplay-right-sizes {
+      gap: 10px;
+    }
+  
+    .productdisplay-right button {
+      width: 160px;
+      font-size: 14px;
+    }
+  }
+  
+  @media(max-width: 800px) {
+    .productdisplay {
+      margin: 0px 30px;
+    }
+  
+    .productdisplay-main-img {
+      width: 300px;
+      height: 400px;
+    }
+  
+    .productdisplay-right h1 {
+      font-size: 24px;
+    }
+  
+    .productdisplay-right-prices {
+      font-size: 18px;
+      gap: 15px;
+    }
+  
+    .productdisplay-right-size h1 {
+      font-size: 14px;
+    }
+  
+    .productdisplay-right-sizes {
+      gap: 8px;
+    }
+  
+    .productdisplay-right button {
+      width: 140px;
+      font-size: 12px;
+    }
+  }
+  
+  @media(max-width: 500px) {
+    .productdisplay {
+      margin: 0px 15px;
+    }
+  
+    .productdisplay-main-img {
+      width: 250px;
+      height: 350px;
+    }
+  
+    .productdisplay-right h1 {
+      font-size: 20px;
+    }
+  
+    .productdisplay-right-prices {
+      font-size: 16px;
+      gap: 10px;
+    }
+  
+    .productdisplay-right-size h1 {
+      font-size: 12px;
+    }
+  
+    .productdisplay-right-sizes {
+      gap: 5px;
+    }
+  
+    .productdisplay-right button {
+      width: 120px;
+      font-size: 12px;
+    }
+  }
+  

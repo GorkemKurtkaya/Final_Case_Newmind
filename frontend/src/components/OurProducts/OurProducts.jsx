@@ -15,7 +15,7 @@ const OurProducts = (props) => {
             name={item.title} 
             image={item.image} 
             price={item.price} 
-            category={item.category} // Kategori bilgisi burada gönderiliyor
+            category={item.category} 
           />
         ))}
       </div>

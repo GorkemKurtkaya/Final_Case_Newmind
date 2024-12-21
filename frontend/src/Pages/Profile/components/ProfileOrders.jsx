@@ -24,6 +24,7 @@ const Orders = ({ orders, ordersLoading, ordersError }) => (
             <h3>Sipariş Numarası: {order._id}</h3>
             <p>Toplam Tutar: {order.amount} TL</p>
             <p>Adres: {order.address.adress}</p>
+            <p >Ödeme Durumu: {order.status}</p>
             <div className="orderitems-format-main">
               <p>Ürün</p>
               <p>İsim</p>
