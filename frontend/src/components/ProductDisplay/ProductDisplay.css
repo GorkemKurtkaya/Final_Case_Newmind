@@ -77,6 +77,130 @@
   }
   
 
+  @media(max-width: 1920px) {
+    .productdisplay {
+      margin: 0px 150px;
+    }
+  
+    .productdisplay-left {
+      gap: 15px;
+    }
+  
+    .productdisplay-main-img {
+      width: 550px;
+      height: 650px;
+    }
+  
+    .productdisplay-right {
+      margin: 0px 60px;
+    }
+  
+    .productdisplay-right h1 {
+      font-size: 35px;
+    }
+  
+    .productdisplay-right-prices {
+      font-size: 22px;
+      gap: 25px;
+    }
+  
+    .productdisplay-right-size h1 {
+      font-size: 18px;
+    }
+  
+    .productdisplay-right-sizes {
+      gap: 15px;
+    }
+  
+    .productdisplay-right button {
+      width: 180px;
+      font-size: 14px;
+    }
+  }
+
+
+  @media(max-width: 1440px) {
+    .productdisplay {
+      margin: 0px 120px;
+    }
+  
+    .productdisplay-left {
+      gap: 13px;
+    }
+  
+    .productdisplay-main-img {
+      width: 520px;
+      height: 620px;
+    }
+  
+    .productdisplay-right {
+      margin: 0px 55px;
+    }
+  
+    .productdisplay-right h1 {
+      font-size: 35px;
+    }
+  
+    .productdisplay-right-prices {
+      font-size: 22px;
+      gap: 20px;
+    }
+  
+    .productdisplay-right-size h1 {
+      font-size: 18px;
+    }
+  
+    .productdisplay-right-sizes {
+      gap: 15px;
+    }
+  
+    .productdisplay-right button {
+      width: 180px;
+      font-size: 14px;
+    }
+  }
+
+  @media(max-width: 1366px) {
+    .productdisplay {
+      margin: 0px 110px;
+    }
+  
+    .productdisplay-left {
+      gap: 12px;
+    }
+  
+    .productdisplay-main-img {
+      width: 500px;
+      height: 600px;
+    }
+  
+    .productdisplay-right {
+      margin: 0px 50px;
+    }
+  
+    .productdisplay-right h1 {
+      font-size: 35px;
+    }
+  
+    .productdisplay-right-prices {
+      font-size: 22px;
+      gap: 20px;
+    }
+  
+    .productdisplay-right-size h1 {
+      font-size: 18px;
+    }
+  
+    .productdisplay-right-sizes {
+      gap: 15px;
+    }
+  
+    .productdisplay-right button {
+      width: 180px;
+      font-size: 14px;
+    }
+  }
+
   @media(max-width: 1280px) {
     .productdisplay {
       margin: 0px 100px;

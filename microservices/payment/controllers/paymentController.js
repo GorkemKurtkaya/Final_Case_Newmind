@@ -1,5 +1,5 @@
 import express from 'express';
-import { processCreditCard, sendPaymentSuccessMessage,addCreditCard } from '../services/paymentService.js';
+import {  sendPaymentSuccessMessage } from '../services/paymentService.js';
 import CreditCard from '../models/creditCardModel.js';
 
 const router = express.Router();

@@ -35,6 +35,63 @@
 
     /* Ekranlar arası geçişlerde tasarımın bozulmaması için media query kullandım. */
 
+    @media(max-width: 1920px) {
+      .item {
+        width: 350px;
+      }
+      .item img {
+        width: 350px;
+        height: 418px;
+      }
+      .item-price {
+        font-size: 18px;
+      }
+      .item-price-old {
+        font-size: 16px;
+      }
+      .item-price-new {
+        font-size: 18px;
+      }
+    }
+
+    @media(max-width: 1440px) {
+      .item {
+        width: 300px;
+      }
+      .item img {
+        width: 300px;
+        height: 360px;
+      }
+      .item-price {
+        font-size: 16px;
+      }
+      .item-price-old {
+        font-size: 14px;
+      }
+      .item-price-new {
+        font-size: 16px;
+      }
+    }
+
+    @media(max-width: 1366px) {
+      .item {
+        width: 300px;
+      }
+      .item img {
+        width: 300px;
+        height: 360px;
+      }
+      .item-price {
+        font-size: 16px;
+      }
+      .item-price-old {
+        font-size: 14px;
+      }
+      .item-price-new {
+        font-size: 16px;
+      }
+    }
+
     @media(max-width: 1280px) {
       .item {
         width: 300px;

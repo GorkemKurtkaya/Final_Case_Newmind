@@ -4,21 +4,29 @@ import { createClient } from 'redis';
 
 
 
+let redisClient;
+
+async function createRedisClient() {
+    if (!redisClient) {
+        // Use environment variables or docker service name for Redis connection
+        redisClient = createClient({
+            url: process.env.REDIS_URL || 'redis://redis:6379'
+        });
+
+        redisClient.on('error', err => console.log('Redis Client Error', err));
+        await redisClient.connect();
+    }
+    return redisClient;
+}
 
 // Sepete ürün ekleme
 async function addToCart(params) {
     const { userId, product } = params;
     const cartKey = userId;
     try {
-        const client = await createClient()
-            .on('error', err => console.log('Redis Client Error', err))
-            .connect();
-
-        const isConnected = client.isOpen;
-        if (!isConnected) {
-            throw new Error("Redis connection failed");
-        }
-
+        const client = await createRedisClient();
+        
+        // Remove isOpen check as it's not needed with the new Redis client
         const existingCartString = await client.get(cartKey);
         let existingCart = [];
 
@@ -40,24 +48,20 @@ async function addToCart(params) {
         if (existingProductIndex > -1) {
             existingCart[existingProductIndex].quantity += product.quantity;
         } else {
-
             existingCart.push(product);
         }
 
         await client.set(cartKey, JSON.stringify(existingCart));
-
         return true;
     } catch (e) {
-        console.log(e);
+        console.log('Add to cart error:', e);
         return false;
     }
 }
 
 // Sepeti getirme
 async function getBasket(params){
-    const client = await createClient()
-        .on('error', err => console.log('Redis Client Error', err))
-        .connect();
+    const client = await createRedisClient();
         
     const cartKey = params.userId;
 
@@ -75,9 +79,7 @@ async function removeCart(params) {
     const { userId } = params; 
     const cartKey = String(userId);  
     try {
-        const client = createClient();
-        client.on('error', err => console.error('Redis Client Error', err));
-        await client.connect();
+        const client = await createRedisClient();
         const result = await client.del(cartKey);
         return result === 0 
             ? { success: false, message: "Ürün bulunamadı" }
@@ -95,9 +97,7 @@ const updateCartItem = async (params,res) => {
     const cartKey = String(userId);
 
     try {
-        const client = await createClient()
-            .on('error', (err) => console.log('Redis Client Error', err))
-            .connect();
+        const client = await createRedisClient();
 
         let cart = await client.get(cartKey);
 
@@ -153,4 +153,4 @@ const updateCartItem = async (params,res) => {
 
 
 
-export {addToCart,getBasket,removeCart,updateCartItem}
+export {addToCart,getBasket,removeCart,updateCartItem,createRedisClient}

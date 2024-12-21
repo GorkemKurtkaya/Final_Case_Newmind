@@ -14,7 +14,10 @@ conn();
 
 const kafka = new Kafka({
   clientId: 'invoice-service',
-  brokers: [process.env.KAFKA_BROKER],
+  brokers:['kafka:9092'],
+
+  // LOCALDE ÇALIŞTIRMAK İÇİN AŞAĞIDAKİ KODU KULLANINIZ
+  // brokers:['localhost:9092']
 });
 
 const consumer = kafka.consumer({ groupId: 'invoice-group' });

@@ -38,6 +38,56 @@
   }
 
   /* Ekranlar arası geçişlerde tasarımın bozulmaması için media query kullandım. */
+  @media(max-width: 1920px) {
+    .shopcategory-indexSort {
+      margin: 0px 150px;
+    }
+  
+    .shopcategory-products {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      row-gap: 70px;
+    }
+  
+    .shopcategory-loadmore {
+      width: 220px;
+      height: 65px;
+      font-size: 16px;
+    }
+  }
+
+  @media(max-width: 1440px) {
+    .shopcategory-indexSort {
+      margin: 0px 140px;
+    }
+  
+    .shopcategory-products {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      row-gap: 70px;
+    }
+  
+    .shopcategory-loadmore {
+      width: 210px;
+      height: 65px;
+      font-size: 16px;
+    }
+  }
+
+  @media(max-width: 1366px) {
+    .shopcategory-indexSort {
+      margin: 0px 130px;
+    }
+  
+    .shopcategory-products {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      row-gap: 70px;
+    }
+  
+    .shopcategory-loadmore {
+      width: 210px;
+      height: 65px;
+      font-size: 16px;
+    }
+  }
 
   @media(max-width: 1280px) {
     .shopcategory-indexSort {

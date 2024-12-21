@@ -1,31 +1,31 @@
 import { createClient } from 'redis';
 
 async function redisCon(){
-    // try{
-    //     let client = createClient({
-    //         url: 'redis://redis:6379'
-    //     });
+    try{
+        const client = await createClient({
+            url: 'redis://redis:6379'  // Bu doğru yapılandırma
+          });
 
-    // client.on('error', (err) => console.log('Redis Client Error', err));
+    client.on('error', (err) => console.log('Redis Client Error', err));
 
-    // await client.connect();
-    // console.log('redise baglandik');
-    // }catch(e){
-    //     console.log(e,'error')
-    // }
+    await client.connect();
+    console.log('redise baglandik');
+    }catch(e){
+        console.log(e,'error')
+    }
 
     // LOCALDE ÇALIŞTIRMAK İÇİN AŞAĞIDAKİ KODU KULLANINIZ
 
-    try{
-        const client = await createClient()
+    // try{
+    //     const client = await createClient()
     
-        client.on('error', (err) => console.log('Redis Client Error', err));
+    //     client.on('error', (err) => console.log('Redis Client Error', err));
     
-        await client.connect();
-        console.log('redise baglandik');
-        }catch(e){
-            console.log(e,'error')
-        }
+    //     await client.connect();
+    //     console.log('redise baglandik');
+    //     }catch(e){
+    //         console.log(e,'error')
+    //     }
         
 }
 

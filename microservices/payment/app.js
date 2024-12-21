@@ -1,9 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
 import paymentController from './controllers/paymentController.js';
 import conn from './db.js';
 import cors from "cors";
+
+// KAFKA BAĞLANTISI services dosyasındaki paymentService.js dosyasında!!!
 
 dotenv.config();
 
