@@ -175,7 +175,7 @@ npm start
 ## Ekran Görüntüleri
 
 ### Ana Sayfa
-| ![image](https://github.com/user-attachments/assets/1441353c-e795-4cd5-9f91-986bd09bd1f6) | ![image](https://github.com/user-attachments/assets/547cb637-32f9-4ce4-836f-ed6295bb7fdd) |
+| ![image](https://github.com/user-attachments/assets/fa69464a-369b-4de5-a42b-439b886a0cf9) | ![image](https://github.com/user-attachments/assets/547cb637-32f9-4ce4-836f-ed6295bb7fdd) |
 |:---:|:---:|
 
 ### Ürün Gösterimi
