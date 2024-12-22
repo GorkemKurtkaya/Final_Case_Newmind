@@ -11,7 +11,16 @@ const ProductDisplay = (props) => {
   const { product } = props;
   const { addToCart } = useContext(ShopContext);
   const [messageApi, contextHolder] = message.useMessage();
+  const [showAlert, setShowAlert] = useState(false);
 
+  const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      setShowAlert(true);
+      return;
+    }
+    addToCart(productId);
+    info();
+  };
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   
@@ -83,18 +92,17 @@ const ProductDisplay = (props) => {
           <h3>Ürün Bilgisi</h3>
           <p>{product.description}</p>
         </div>
-        <button
-          onClick={() => {
-            if (!isAuthenticated) {
-              alert("Ürün eklemek için giriş yapmalısınız.");
-              return;
-            }
-            addToCart(productId);
-            info();
-          }}
-        >
-          Sepete Ekle
-        </button>
+        <div>
+      <button onClick={handleAddToCart}>Sepete Ekle</button>
+      {showAlert && (
+        <div className="custom-alert">
+          <div className="custom-alert-content">
+            <p>Sepete ürün eklemek için giriş yapmalısınız!!</p>
+            <button onClick={() => setShowAlert(false)}>Tamam</button>
+          </div>
+        </div>
+      )}
+    </div>
       </div>
     </div>
   );

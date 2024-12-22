@@ -63,6 +63,55 @@
   outline: none;
 }
 
+@media(max-width: 1920px){
+  .filter {
+    top: 100%;
+    left: 5%;
+    width: 90%; 
+    flex-direction: row; 
+    gap: 20px; 
+    padding: 15px;
+  }
+
+  .filter-item {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .filter-item select {
+    width: 100%; 
+  }
+
+  .filter-item-search input {
+    width: 100%; 
+  }
+}
+
+@media(max-width: 1280px){
+  .filter {
+    top: 100%;
+    left: 5%;
+    width: 90%; 
+    flex-direction: row; 
+    gap: 20px; 
+    padding: 15px;
+
+  }
+
+  .filter-item {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .filter-item select {
+    width: 100%; 
+  }
+
+  .filter-item-search input {
+    width: 100%; 
+  }
+}
+
 /* Ekran Küçülünce CSS Kodları */
 @media (max-width: 768px) {
   .filter {
