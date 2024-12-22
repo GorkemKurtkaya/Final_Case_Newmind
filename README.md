@@ -1,7 +1,7 @@
 # Final_Case_Newmind
 
 
-# E-Ticaret Sitesi(Gorkem Markt)
+# E-Ticaret Sitesi(GorkeMarkt)
 
 Bu Proje Patika.dev/Newmind AI Fullstack Bootcamp için hazırlamış olduğum e-ticaret projesidir. Proje, backend, frontend ve microservices olmak üzere üç ana bileşenden oluşmaktadır. Her bir bileşen, modern teknolojiler kullanılarak geliştirilmiştir ve Docker ile kolayca çalıştırılabilir durumdadır.
 
@@ -155,6 +155,8 @@ npm start
 ## Dikkat Edilmesi Gerekenler
 
 - Kafka ve Zookeeper olmadan mikroservisler çalışmaz. Eğer Kafka ve Zookeeper düzgün çalışmıyorsa gerekli logları kontrol edin.
+
+- Redis ile önbelleklemenin doğru çalıştığından emin olun. Hata durumunda gerekli olan kodlar yorum satırı olarak redis.js dosyasının içinde mevcut.
 
 - .env dosyalarını doğru şekilde doldurduğunuzdan emin olun.
 
