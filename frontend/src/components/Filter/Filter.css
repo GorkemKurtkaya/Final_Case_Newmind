@@ -65,7 +65,7 @@
 
 @media(max-width: 1920px){
   .filter {
-    top: 100%;
+    top: 83%;
     left: 5%;
     width: 90%; 
     flex-direction: row; 
@@ -87,9 +87,10 @@
   }
 }
 
+
 @media(max-width: 1280px){
   .filter {
-    top: 100%;
+    top: 83%;
     left: 5%;
     width: 90%; 
     flex-direction: row; 
@@ -115,7 +116,7 @@
 /* Ekran Küçülünce CSS Kodları */
 @media (max-width: 768px) {
   .filter {
-    top: 80%;
+    top: 60%;
     left: 5%;
     width: 90%; 
     flex-direction: column; 
