@@ -11,7 +11,8 @@ import {  Result } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 
-// Sepetimizdeki ürünleri listelemek için CartItems fonksiyonu oluşturuldu.
+
+// Sepetimizdeki ürünleri listelemek için CartItems
 const CartItems = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [loading, setLoading] = useState(true);

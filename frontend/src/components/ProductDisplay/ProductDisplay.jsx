@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import "./ProductDisplay.css";
 import { ShopContext } from "../../Context/ShopContext";
 import { useParams } from "react-router-dom";
@@ -11,6 +11,32 @@ const ProductDisplay = (props) => {
   const { product } = props;
   const { addToCart } = useContext(ShopContext);
   const [messageApi, contextHolder] = message.useMessage();
+
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
+    useEffect(() => {
+      const checkAuth = async () => {
+        try {
+          const response = await fetch("http://localhost:3000/auth/checkUser", {
+            method: "GET",
+            credentials: "include", 
+          });
+          if (response.ok) {
+            setIsAuthenticated(true);
+          } else {
+            console.info("Kullanıcı oturumu kontrol edilemedi.");
+            setIsAuthenticated(false);
+          }
+        } catch (error) {
+          console.error("Auth check failed:", error);
+          setIsAuthenticated(false);
+        }
+      };
+  
+      checkAuth();
+    }, []);
+
 
   const info = () => {
     messageApi.info("Ürün Sepete Eklendi");
@@ -59,6 +85,10 @@ const ProductDisplay = (props) => {
         </div>
         <button
           onClick={() => {
+            if (!isAuthenticated) {
+              alert("Ürün eklemek için giriş yapmalısınız.");
+              return;
+            }
             addToCart(productId);
             info();
           }}

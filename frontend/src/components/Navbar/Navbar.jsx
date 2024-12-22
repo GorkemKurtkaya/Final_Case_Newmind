@@ -22,6 +22,7 @@ const Navbar = () => {
         if (response.ok) {
           setIsAuthenticated(true);
         } else {
+          console.error("Kullanıcı oturumu kontrol edilemedi.");
           setIsAuthenticated(false);
         }
       } catch (error) {
