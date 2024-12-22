@@ -156,6 +156,8 @@ npm start
 
 - Kafka ve Zookeeper olmadan mikroservisler çalışmaz. Eğer Kafka ve Zookeeper düzgün çalışmıyorsa gerekli logları kontrol edin.
 
+- Redis ile önbelleklemenin doğru çalıştığından emin olun. Hata durumunda gerekli olan kodlar yorum satırı olarak redis.js dosyasının içinde mevcut.
+
 - .env dosyalarını doğru şekilde doldurduğunuzdan emin olun.
 
 - Docker Compose kullanımı sırasında Redis ve Kafka'nın stabilize olması birkaç dakika alabilir. Sabırlı olun.
